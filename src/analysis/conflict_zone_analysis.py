@@ -11,6 +11,7 @@ import sys
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
+from scipy.spatial import ConvexHull
 
 from src.analysis.scenario_metadata import SCENARIO_DESCRIPTIONS, scenario_description
 from src.analysis.trajectory_analysis import (
@@ -24,6 +25,127 @@ from src.config import PipelineConfig
 DEFAULT_SCENARIOS = tuple(SCENARIO_DESCRIPTIONS)
 DEFAULT_INPUT = PROJECT_ROOT / "outputs/trajectory_analysis"
 DEFAULT_OUTPUT = PROJECT_ROOT / "outputs/conflict_zone_analysis"
+
+# Metric swept-corridor assumptions.  Half-widths include an actor footprint
+# and safety margin; they replace the old generic 2 m radial buffer only for
+# the two counterfactual scenarios.
+POTENTIAL_ZONE_CONFIG = {
+    12: {
+        "maneuver": "straight",
+        "maneuver_label": "counterfactual straight continuation",
+        "pedestrian_half_width_m": 0.75,
+        "vehicle_half_width_m": 1.35,
+        "grid_resolution_m": 0.05,
+    },
+    16: {
+        "maneuver": "left_turn",
+        "maneuver_label": "counterfactual left turn (southbound to eastbound)",
+        "pedestrian_half_width_m": 0.75,
+        "vehicle_half_width_m": 1.35,
+        "grid_resolution_m": 0.05,
+    },
+}
+
+
+def _representative_path(traces: pd.DataFrame, actor: str, points: int = 160) -> np.ndarray:
+    """Median scenario path after normalizing each recording by path progress."""
+    paths = []
+    grid = np.linspace(0, 1, points)
+    for _, one in traces.groupby("recording_identifier", sort=True):
+        xy = one.sort_values("scenario_time")[[f"{actor}_x", f"{actor}_z"]].to_numpy(float)
+        keep = np.r_[True, np.linalg.norm(np.diff(xy, axis=0), axis=1) > 1e-6]
+        xy = xy[keep]
+        if len(xy) < 2:
+            continue
+        progress = np.r_[0.0, np.cumsum(np.linalg.norm(np.diff(xy, axis=0), axis=1))]
+        progress /= progress[-1]
+        paths.append(np.column_stack([
+            np.interp(grid, progress, xy[:, 0]), np.interp(grid, progress, xy[:, 1])
+        ]))
+    if not paths:
+        raise ValueError("No usable paths for scenario-level geometry.")
+    return np.median(np.stack(paths), axis=0)
+
+
+def _counterfactual_path(traces: pd.DataFrame, scenario: int) -> np.ndarray:
+    vehicle = _representative_path(traces, "veh")
+    pedestrian = _representative_path(traces, "ped")
+    if scenario == 12:
+        # Fit the unresolved approach before the observed northbound turn and
+        # continue that lane straight through the pedestrian's median X.
+        approach = vehicle[vehicle[:, 0] > np.percentile(vehicle[:, 0], 45)]
+        z = float(np.median(approach[:, 1]))
+        return np.column_stack([np.linspace(vehicle[0, 0], pedestrian[:, 0].min() - 8, 220), np.full(220, z)])
+    if scenario == 16:
+        # World coordinates show a southbound approach.  Turning east is a
+        # vehicle-relative left turn and crosses the pedestrian corridor.
+        approach_x = float(np.median(vehicle[:80, 0]))
+        crossing_z = float(np.median(pedestrian[-45:, 1]))
+        radius = 8.0
+        straight = np.column_stack([
+            np.full(100, approach_x), np.linspace(vehicle[0, 1], crossing_z + radius, 100)
+        ])
+        theta = np.linspace(np.pi, 1.5 * np.pi, 70)
+        arc = np.column_stack([
+            approach_x + radius + radius * np.cos(theta),
+            crossing_z + radius + radius * np.sin(theta),
+        ])
+        east = np.column_stack([
+            np.linspace(approach_x + radius, pedestrian[:, 0].max() + 8, 100),
+            np.full(100, crossing_z),
+        ])
+        return np.vstack([straight, arc[1:], east[1:]])
+    raise ValueError(f"No counterfactual geometry configured for scenario {scenario}.")
+
+
+def _distance_to_polyline(points: np.ndarray, path: np.ndarray) -> np.ndarray:
+    result = np.full(len(points), np.inf)
+    for a, b in zip(path[:-1], path[1:]):
+        segment = b - a
+        denominator = float(segment @ segment)
+        if denominator <= 1e-12:
+            continue
+        fraction = np.clip(((points - a) @ segment) / denominator, 0, 1)
+        result = np.minimum(result, np.linalg.norm(points - (a + fraction[:, None] * segment), axis=1))
+    return result
+
+
+def _potential_zone(traces: pd.DataFrame, scenario: int) -> dict[str, object]:
+    cfg = POTENTIAL_ZONE_CONFIG[scenario]
+    ped_path = _representative_path(traces, "ped")
+    cf_path = _counterfactual_path(traces, scenario)
+    margin = max(cfg["pedestrian_half_width_m"], cfg["vehicle_half_width_m"]) + .2
+    lower = np.minimum(ped_path.min(axis=0), cf_path.min(axis=0)) - margin
+    upper = np.maximum(ped_path.max(axis=0), cf_path.max(axis=0)) + margin
+    step = cfg["grid_resolution_m"]
+    xs = np.arange(lower[0], upper[0] + step, step)
+    zs = np.arange(lower[1], upper[1] + step, step)
+    xx, zz = np.meshgrid(xs, zs)
+    points = np.column_stack([xx.ravel(), zz.ravel()])
+    inside = (_distance_to_polyline(points, ped_path) <= cfg["pedestrian_half_width_m"]) & (
+        _distance_to_polyline(points, cf_path) <= cfg["vehicle_half_width_m"]
+    )
+    overlap = points[inside]
+    if len(overlap) < 3:
+        raise ValueError(f"Scenario {scenario} potential corridor overlap is empty.")
+    hull = overlap[ConvexHull(overlap).vertices]
+    center = overlap.mean(axis=0)
+    return {
+        "scenario": scenario, "description": scenario_description(scenario),
+        "shape": "corridor_intersection_polygon", "zone_type": "potential_counterfactual",
+        "center_x_m": float(center[0]), "center_z_m": float(center[1]),
+        "polygon_xz_m": hull.tolist(),
+        "conflict_zone_method": "turn_uncertainty",
+        "method": "pedestrian_corridor_intersection_counterfactual_vehicle_corridor",
+        "geometrically_supported": True, "recording_count": int(traces.recording_identifier.nunique()),
+        "scenario_fixed_geometry": True, "counterfactual_maneuver": cfg["maneuver"],
+        "counterfactual_maneuver_label": cfg["maneuver_label"],
+        "pedestrian_half_width_m": cfg["pedestrian_half_width_m"],
+        "vehicle_half_width_m": cfg["vehicle_half_width_m"], "grid_resolution_m": step,
+        "representative_pedestrian_path_xz_m": ped_path.tolist(),
+        "counterfactual_vehicle_path_xz_m": cf_path.tolist(),
+        "interpretation": "Potential overlap under an unresolved plausible vehicle maneuver; the observed vehicle did not enter this zone.",
+    }
 
 
 def parse_args() -> argparse.Namespace:
@@ -67,6 +189,8 @@ def define_conflict_zone(
     traces: pd.DataFrame, scenario: int, buffer_m: float
 ) -> dict[str, object]:
     """Estimate one shared circular zone from recording-level path geometry."""
+    if scenario in POTENTIAL_ZONE_CONFIG:
+        return _potential_zone(traces, scenario)
     if buffer_m <= 0:
         raise ValueError("--conflict-zone-buffer must be positive.")
     centers = []
@@ -108,6 +232,8 @@ def define_conflict_zone(
         "scenario": scenario,
         "description": scenario_description(scenario),
         "shape": "circle",
+        "zone_type": "observed_path",
+        "conflict_zone_method": "geometric_intersection",
         "center_x_m": float(center[0]),
         "center_z_m": float(center[1]),
         "radius_m": float(buffer_m),
@@ -128,11 +254,18 @@ def define_conflict_zone(
     }
 
 
+def get_conflict_zone_for_scenario(
+    scenario_id: int, scenario_geometry: pd.DataFrame, buffer_m: float = 2.0
+) -> dict[str, object]:
+    """Central factory for observed-path and turn-uncertainty zones."""
+    return define_conflict_zone(scenario_geometry, scenario_id, buffer_m)
+
+
 def occupancy_interval(
     time: np.ndarray, x: np.ndarray, z: np.ndarray, zone: dict[str, object]
 ) -> tuple[float, float] | tuple[float, float]:
     """Return first entry and final exit of the first contiguous zone visit."""
-    inside = np.hypot(x - zone["center_x_m"], z - zone["center_z_m"]) <= zone["radius_m"]
+    inside = zone_membership(x, z, zone)
     indices = np.flatnonzero(inside)
     if not len(indices):
         return math.nan, math.nan
@@ -141,6 +274,61 @@ def occupancy_interval(
     while end + 1 < len(inside) and inside[end + 1]:
         end += 1
     return float(time[start]), float(time[end])
+
+
+def zone_membership(x: np.ndarray, z: np.ndarray, zone: dict[str, object]) -> np.ndarray:
+    if zone.get("shape", "circle") == "circle":
+        return np.hypot(x - zone["center_x_m"], z - zone["center_z_m"]) <= zone["radius_m"]
+    polygon = np.asarray(zone["polygon_xz_m"], dtype=float)
+    from matplotlib.path import Path as MplPath
+    return MplPath(polygon, closed=True).contains_points(np.column_stack([x, z]), radius=1e-9)
+
+
+def _closest_event_time(one: pd.DataFrame, actor: str, zone: dict[str, object], entry: float, exit_time: float) -> float:
+    if not np.isfinite(entry):
+        return math.nan
+    visit = one[one.scenario_time.between(entry, exit_time)]
+    distances = np.hypot(visit[f"{actor}_x"] - zone["center_x_m"], visit[f"{actor}_z"] - zone["center_z_m"])
+    return float(visit.loc[distances.idxmin(), "scenario_time"])
+
+
+def _window_change(one: pd.DataFrame, column: str, entry: float, seconds: float = 1.0) -> tuple[float, float]:
+    if not np.isfinite(entry):
+        return math.nan, math.nan
+    before = one[one.scenario_time.between(entry - seconds, entry)]
+    after = one[one.scenario_time.between(entry, entry + seconds)]
+    if before.empty or after.empty:
+        return math.nan, math.nan
+    return float(after[column].mean() - before[column].mean()), float((after[column].iloc[-1] - before[column].iloc[0]) / (2 * seconds))
+
+
+def _counterfactual_arrival(one: pd.DataFrame, zone: dict[str, object]) -> tuple[float, float, float]:
+    path = np.asarray(zone["counterfactual_vehicle_path_xz_m"], float)
+    segment_lengths = np.linalg.norm(np.diff(path, axis=0), axis=1)
+    cumulative = np.r_[0.0, np.cumsum(segment_lengths)]
+    zone_index = int(np.argmin(np.linalg.norm(path - np.array([zone["center_x_m"], zone["center_z_m"]]), axis=1)))
+    observed = one.sort_values("scenario_time")
+    # Commitment is the first sustained departure (>1.25 m) from the configured
+    # alternative; use the preceding 2 s as the unresolved approach-speed window.
+    if zone.get("counterfactual_maneuver") == "left_turn":
+        changing = np.flatnonzero(np.abs(np.diff(path[:, 0])) > .01)
+        turn_start_z = float(path[changing[0], 1])
+        committed = np.flatnonzero(observed.veh_z.to_numpy() <= turn_start_z)
+    else:
+        deviation = _distance_to_polyline(observed[["veh_x", "veh_z"]].to_numpy(), path)
+        baseline = float(np.median(deviation[:min(20, len(deviation))]))
+        beyond = deviation > baseline + 1.25
+        sustained = np.convolve(beyond.astype(int), np.ones(5, dtype=int), mode="same") >= 4
+        committed = np.flatnonzero(sustained)
+    commitment_index = int(committed[0]) if len(committed) else len(observed) - 1
+    commitment_time = float(observed.scenario_time.iloc[commitment_index])
+    approach = observed[observed.scenario_time.between(commitment_time - 2.0, commitment_time)]
+    speed = float(approach.veh_speed[approach.veh_speed > .25].median()) if (approach.veh_speed > .25).any() else math.nan
+    current = observed[["veh_x", "veh_z"]].iloc[commitment_index].to_numpy(float)
+    current_index = int(np.argmin(np.linalg.norm(path - current, axis=1)))
+    distance = max(0.0, float(cumulative[zone_index] - cumulative[current_index]))
+    ttz = distance / speed if np.isfinite(speed) and speed > .25 else math.nan
+    return (commitment_time + ttz if np.isfinite(ttz) else math.nan), commitment_time, ttz
 
 
 def entry_order(ped_entry: float, veh_entry: float) -> tuple[str, float]:
@@ -200,7 +388,16 @@ def recording_events(
     veh_entry, veh_exit = occupancy_interval(
         time, ordered.veh_x.to_numpy(), ordered.veh_z.to_numpy(), zone
     )
+    potential = zone.get("zone_type") == "potential_counterfactual"
+    if potential:
+        # The realized vehicle path is expressly not an occupancy measurement.
+        veh_entry, veh_exit = math.nan, math.nan
+    ped_center = _closest_event_time(ordered, "ped", zone, ped_entry, ped_exit)
+    veh_center = _closest_event_time(ordered, "veh", zone, veh_entry, veh_exit)
+    cf_arrival, commitment_time, cf_ttz = _counterfactual_arrival(ordered, zone) if potential else (math.nan, math.nan, math.nan)
+    ped_speed_change, ped_mean_accel = _window_change(ordered, "ped_speed", ped_entry)
     entered_first, entry_gap = entry_order(ped_entry, veh_entry)
+    anticipated_first, anticipated_gap = entry_order(ped_entry, cf_arrival)
     passed_first, exit_gap = entry_order(ped_exit, veh_exit)
     overlapped, overlap_duration = occupancy_overlap(
         ped_entry, ped_exit, veh_entry, veh_exit
@@ -219,16 +416,42 @@ def recording_events(
         "scenario": int(ordered.scenario.iloc[0]),
         "pedestrian_entry_time": ped_entry,
         "pedestrian_exit_time": ped_exit,
-        "vehicle_entry_time": veh_entry,
-        "vehicle_exit_time": veh_exit,
+        "pedestrian_center_time": ped_center,
+        "vehicle_actual_entry_time": veh_entry, "vehicle_actual_center_time": veh_center,
+        "vehicle_actual_exit_time": veh_exit,
+        # Backwards-compatible actual-only aliases.
+        "vehicle_entry_time": veh_entry, "vehicle_exit_time": veh_exit,
+        "counterfactual_vehicle_arrival_time": cf_arrival,
+        "counterfactual_vehicle_time_to_zone_seconds": cf_ttz,
+        "counterfactual_vehicle_arrival_status": (
+            "estimated" if np.isfinite(cf_arrival) else
+            ("unavailable_no_valid_approach_speed" if potential else "not_applicable")
+        ),
+        "vehicle_maneuver_commitment_time": commitment_time,
+        "delta_TTZ_seconds": (ped_entry - cf_arrival) if np.isfinite(ped_entry) and np.isfinite(cf_arrival) else math.nan,
+        "zone_event_status": "potential_counterfactual" if potential else "observed_actual",
+        "conflict_zone_method": zone.get("conflict_zone_method", "geometric_intersection"),
+        "zone_event_valid": bool(np.isfinite(ped_entry) or np.isfinite(veh_entry) or np.isfinite(cf_arrival)),
+        "pedestrian_zone_status": "entered" if np.isfinite(ped_entry) else "never_entered_zone",
+        "vehicle_zone_status": (
+            "counterfactual_arrival_only_recorded_path_not_applicable" if potential
+            else ("entered" if np.isfinite(veh_entry) else "never_entered_zone")
+        ),
         "reached_zone_first": entered_first,
         "entry_time_difference_seconds": entry_gap,
+        "anticipated_first_arrival_actor": anticipated_first if potential else entered_first,
+        "anticipated_arrival_time_difference_seconds": anticipated_gap if potential else entry_gap,
         "passed_zone_first": passed_first,
         "exit_time_difference_seconds": exit_gap,
         "occupancy_intervals_overlap": overlapped,
         "occupancy_overlap_duration_seconds": overlap_duration,
         "pedestrian_speed_at_entry_mps": _value_at_time(ordered, "ped_speed", ped_entry),
+        "pedestrian_speed_at_center_mps": _value_at_time(ordered, "ped_speed", ped_center),
+        "pedestrian_speed_at_exit_mps": _value_at_time(ordered, "ped_speed", ped_exit),
+        "pedestrian_speed_change_1s_before_to_after_entry_mps": ped_speed_change,
+        "pedestrian_mean_acceleration_1s_window_mps2": ped_mean_accel,
         "vehicle_speed_at_entry_mps": _value_at_time(ordered, "veh_speed", veh_entry),
+        "vehicle_speed_at_counterfactual_arrival_mps": _value_at_time(ordered, "veh_speed", cf_arrival),
         "pedestrian_minimum_approach_speed_mps": (
             float(ped_approach.ped_speed.min()) if len(ped_approach) else math.nan
         ),
@@ -276,14 +499,29 @@ def build_spatial_figure(
 ) -> go.Figure:
     scenario = int(traces.scenario.iloc[0])
     figure = go.Figure()
+    direction_annotations = []
     angles = np.linspace(0, 2 * np.pi, 120)
+    if zone["shape"] == "circle":
+        zone_x = zone["center_x_m"] + zone["radius_m"] * np.cos(angles)
+        zone_z = zone["center_z_m"] + zone["radius_m"] * np.sin(angles)
+    else:
+        polygon = np.asarray(zone["polygon_xz_m"] + [zone["polygon_xz_m"][0]])
+        zone_x, zone_z = polygon[:, 0], polygon[:, 1]
     figure.add_trace(go.Scatter(
-        x=zone["center_x_m"] + zone["radius_m"] * np.cos(angles),
-        y=zone["center_z_m"] + zone["radius_m"] * np.sin(angles),
-        mode="lines", fill="toself", name="Estimated conflict zone",
-        line={"color": "#9467BD", "width": 2},
-        fillcolor="rgba(148,103,189,.16)", meta={"role": "reference_geometry"},
+        x=zone_x, y=zone_z, mode="lines", fill="toself",
+        name="Potential conflict zone" if zone.get("zone_type") == "potential_counterfactual" else "Observed-path conflict zone",
+        line={"color": "#9467BD", "width": 2, "dash": "dot" if zone.get("zone_type") == "potential_counterfactual" else "solid"},
+        fillcolor="rgba(148,103,189,.12)" if zone.get("zone_type") == "potential_counterfactual" else "rgba(148,103,189,.16)", meta={"role": "reference_geometry"},
     ))
+    if zone.get("zone_type") == "potential_counterfactual":
+        ped = np.asarray(zone["representative_pedestrian_path_xz_m"])
+        cf = np.asarray(zone["counterfactual_vehicle_path_xz_m"])
+        for path, width, name, color, dash in ((ped, zone["pedestrian_half_width_m"], "Representative pedestrian corridor", "#2A6FBB", "solid"), (cf, zone["vehicle_half_width_m"], "Counterfactual vehicle corridor", "#9467BD", "dash")):
+            figure.add_trace(go.Scatter(x=path[:,0], y=path[:,1], mode="lines", name=name, line={"color":color,"width":max(3, width*8),"dash":dash}, opacity=.18 if dash == "solid" else .25, hoverinfo="skip"))
+        figure.add_trace(go.Scatter(x=cf[:,0], y=cf[:,1], mode="lines", name="Counterfactual vehicle trajectory", line={"color":"#6F42C1","width":3,"dash":"dash"}))
+        for path, color in ((ped, "#2A6FBB"), (cf, "#6F42C1")):
+            index = len(path) // 2
+            direction_annotations.append({"x":path[index,0], "y":path[index,1], "ax":path[index-8,0], "ay":path[index-8,1], "xref":"x", "yref":"y", "axref":"x", "ayref":"y", "showarrow":True, "arrowhead":3, "arrowsize":1.2, "arrowwidth":2, "arrowcolor":color, "text":""})
     for recording, one in traces.groupby("recording_identifier", sort=True):
         participant = one.participant_id.iloc[0]
         for actor, color, dash in (
@@ -356,6 +594,7 @@ def build_spatial_figure(
         xaxis={"title": "World X position (m)", "scaleanchor": "y", "scaleratio": 1},
         yaxis={"title": "World Z position (m)"},
         margin={"l": 85, "r": 45, "t": 170, "b": 80},
+        annotations=direction_annotations,
     )
     return figure
 
@@ -524,7 +763,7 @@ def run_conflict_analysis(
     for scenario in scenarios:
         trajectory_dir = input_dir / f"scenario_{scenario:02d}"
         traces = pd.read_csv(trajectory_dir / "raw_trajectory_samples.csv")
-        zone = define_conflict_zone(traces, scenario, buffer_m)
+        zone = get_conflict_zone_for_scenario(scenario, traces, buffer_m)
         scenario_dir = output_dir / f"scenario_{scenario:02d}"
         scenario_dir.mkdir(parents=True, exist_ok=True)
         (scenario_dir / "conflict_zone_definition.json").write_text(
@@ -584,6 +823,12 @@ def run_conflict_analysis(
             "failed_recordings": failures,
             "zone_method": zone["method"],
             "zone_geometrically_supported": zone["geometrically_supported"],
+            "zone_nonempty": bool(zone["geometrically_supported"]),
+            "zone_type": zone.get("zone_type", "observed_path"),
+            "pedestrian_entry_count": int(event_frame.pedestrian_entered_zone.sum()),
+            "actual_vehicle_entry_count": int(event_frame.vehicle_entered_zone.sum()),
+            "counterfactual_vehicle_arrival_count": int(event_frame.counterfactual_vehicle_arrival_time.notna().sum()),
+            "temporal_ordering_valid": bool(event_frame.dropna(subset=["pedestrian_entry_time", "pedestrian_center_time", "pedestrian_exit_time"]).apply(lambda r: r.pedestrian_entry_time <= r.pedestrian_center_time <= r.pedestrian_exit_time, axis=1).all()),
             "pedestrian_never_entered": event_frame.loc[
                 ~event_frame.pedestrian_entered_zone, "recording_identifier"
             ].tolist(),
@@ -603,10 +848,11 @@ def run_conflict_analysis(
     (output_dir / "validation_summary.json").write_text(
         json.dumps({
             "zone_definition": (
-                "Shared scenario-level circle centered on the coordinate-wise robust "
+                "Scenarios 3, 7, 15, and 21: shared scenario-level circle centered on the coordinate-wise robust "
                 "median of recording-level pedestrian/vehicle segment intersections "
-                "or, where paths do not intersect, closest-path midpoints."
+                "or closest-path midpoints. Scenarios 12 and 16: fixed scenario-level intersection of buffered representative pedestrian and counterfactual vehicle corridors."
             ),
+            "delta_TTZ_sign_convention": "pedestrian zone-entry time minus counterfactual vehicle arrival time; negative means pedestrian arrives first",
             "buffer_m": buffer_m,
             "distance_formula": "sqrt((vehicle_x-pedestrian_x)^2 + (vehicle_z-pedestrian_z)^2)",
             "synchronization": "Paired actor coordinates from the same cleaned ScenarioTime row.",

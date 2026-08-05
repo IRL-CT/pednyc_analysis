@@ -58,6 +58,32 @@ class InteractiveOnsetSpeedTests(unittest.TestCase):
     def test_all_default_scenarios_have_centralized_labels(self) -> None:
         self.assertEqual(set(SCENARIO_LABELS), {3, 7, 12, 15, 16, 21})
 
+    def test_vehicle_plot_marks_counterfactual_and_pedestrian_arrivals(self) -> None:
+        traces = self.traces[self.traces.recording_identifier.eq("PedNYC1_scenario3")].assign(original_time=lambda x: x.aligned_time + 10, vehicle_speed=4.0)
+        events = pd.DataFrame([{"recording_identifier":"PedNYC1_scenario3", "zone_event_status":"potential_counterfactual", "counterfactual_vehicle_arrival_time":10.5, "pedestrian_entry_time":10.2}])
+        summary, metadata = calculate_summary(traces, .5, "vehicle_speed")
+        figure = build_figure(traces, summary, metadata, events, "vehicle_speed", "vehicle")
+        roles = {trace.meta.get("role") for trace in figure.data if trace.meta}
+        self.assertIn("zone_event_marker", roles)
+        self.assertNotIn("zone_occupancy", roles)
+
+    def test_pedestrian_plot_shades_zone_and_marks_events(self) -> None:
+        traces = self.traces[
+            self.traces.recording_identifier.eq("PedNYC1_scenario3")
+        ].assign(original_time=lambda x: x.aligned_time + 10)
+        events = pd.DataFrame([{
+            "recording_identifier": "PedNYC1_scenario3",
+            "zone_event_status": "observed_actual",
+            "pedestrian_entry_time": 10.2,
+            "pedestrian_center_time": 10.5,
+            "pedestrian_exit_time": 10.8,
+        }])
+        summary, metadata = calculate_summary(traces, .5)
+        figure = build_figure(traces, summary, metadata, events)
+        roles = {trace.meta.get("role") for trace in figure.data if trace.meta}
+        self.assertIn("zone_occupancy", roles)
+        self.assertIn("zone_event_marker", roles)
+
     def test_missing_scenario_label_raises_clear_error(self) -> None:
         metadata = ScenarioSummary(99, 3, 2, 0.5, 3, 1.0, 2.0, 1)
         summary = pd.DataFrame({

@@ -2,6 +2,7 @@
   "scenario": 15,
   "description": "Parallel/contra-directional approach \u2014 pedestrian near vehicle lane, opposite side",
   "shape": "circle",
+  "zone_type": "observed_path",
   "center_x_m": -2.7861179858830325,
   "center_z_m": 58.15659252052269,
   "radius_m": 2.0,

@@ -1,27 +1,5 @@
 [
   {
-    "scenario": 3,
-    "maximum_n": 26,
-    "minimum_summary_n": 13,
-    "coverage_fraction": 0.5,
-    "participant_count": 26,
-    "minimum_end_time": 22.323731,
-    "maximum_end_time": 74.225097,
-    "low_coverage_points": 483,
-    "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_speed_plots\\scenario_03_onset_aligned.html"
-  },
-  {
-    "scenario": 7,
-    "maximum_n": 23,
-    "minimum_summary_n": 12,
-    "coverage_fraction": 0.5,
-    "participant_count": 23,
-    "minimum_end_time": 20.461914,
-    "maximum_end_time": 43.095947,
-    "low_coverage_points": 204,
-    "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_speed_plots\\scenario_07_onset_aligned.html"
-  },
-  {
     "scenario": 12,
     "maximum_n": 26,
     "minimum_summary_n": 13,
@@ -33,17 +11,6 @@
     "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_speed_plots\\scenario_12_onset_aligned.html"
   },
   {
-    "scenario": 15,
-    "maximum_n": 28,
-    "minimum_summary_n": 14,
-    "coverage_fraction": 0.5,
-    "participant_count": 28,
-    "minimum_end_time": 12.187744,
-    "maximum_end_time": 118.644776,
-    "low_coverage_points": 911,
-    "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_speed_plots\\scenario_15_onset_aligned.html"
-  },
-  {
     "scenario": 16,
     "maximum_n": 25,
     "minimum_summary_n": 13,
@@ -53,16 +20,5 @@
     "maximum_end_time": 39.882324,
     "low_coverage_points": 261,
     "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_speed_plots\\scenario_16_onset_aligned.html"
-  },
-  {
-    "scenario": 21,
-    "maximum_n": 27,
-    "minimum_summary_n": 14,
-    "coverage_fraction": 0.5,
-    "participant_count": 27,
-    "minimum_end_time": 18.15918,
-    "maximum_end_time": 45.287353,
-    "low_coverage_points": 244,
-    "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_speed_plots\\scenario_21_onset_aligned.html"
   }
 ]

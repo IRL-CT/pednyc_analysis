@@ -1,0 +1,649 @@
+column,category,joint_or_segment,axis,trials_available,trial_availability_fraction,used_in_model,exclusion_note
+B Avatar Pos X,avatar_position_unreliable,VR/avatar,X,155,1.0,False,unreliable_global_trajectory_not_used
+B Avatar Pos Y,avatar_position_unreliable,VR/avatar,Y,155,1.0,False,unreliable_global_trajectory_not_used
+B Avatar Pos Z,avatar_position_unreliable,VR/avatar,Z,155,1.0,False,unreliable_global_trajectory_not_used
+B Avatar Rot X,avatar_rotation,VR/avatar,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Avatar Rot Y,avatar_rotation,VR/avatar,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Avatar Rot Z,avatar_rotation,VR/avatar,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos Chest X,bone_position,Chest,X,155,1.0,True,
+B Bone Pos Chest Y,bone_position,Chest,Y,155,1.0,True,
+B Bone Pos Chest Z,bone_position,Chest,Z,155,1.0,True,
+B Bone Pos Head X,bone_position,Head,X,155,1.0,True,
+B Bone Pos Head Y,bone_position,Head,Y,155,1.0,True,
+B Bone Pos Head Z,bone_position,Head,Z,155,1.0,True,
+B Bone Pos Hips X,bone_position,Hips,X,155,1.0,True,
+B Bone Pos Hips Y,bone_position,Hips,Y,155,1.0,True,
+B Bone Pos Hips Z,bone_position,Hips,Z,155,1.0,True,
+B Bone Pos LeftFoot X,bone_position,LeftFoot,X,155,1.0,True,
+B Bone Pos LeftFoot Y,bone_position,LeftFoot,Y,155,1.0,True,
+B Bone Pos LeftFoot Z,bone_position,LeftFoot,Z,155,1.0,True,
+B Bone Pos LeftHand X,bone_position,LeftHand,X,155,1.0,True,
+B Bone Pos LeftHand Y,bone_position,LeftHand,Y,155,1.0,True,
+B Bone Pos LeftHand Z,bone_position,LeftHand,Z,155,1.0,True,
+B Bone Pos LeftIndexDistal X,bone_position,LeftIndexDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexDistal Y,bone_position,LeftIndexDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexDistal Z,bone_position,LeftIndexDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexIntermediate X,bone_position,LeftIndexIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexIntermediate Y,bone_position,LeftIndexIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexIntermediate Z,bone_position,LeftIndexIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexProximal X,bone_position,LeftIndexProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexProximal Y,bone_position,LeftIndexProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftIndexProximal Z,bone_position,LeftIndexProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleDistal X,bone_position,LeftLittleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleDistal Y,bone_position,LeftLittleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleDistal Z,bone_position,LeftLittleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleIntermediate X,bone_position,LeftLittleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleIntermediate Y,bone_position,LeftLittleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleIntermediate Z,bone_position,LeftLittleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleProximal X,bone_position,LeftLittleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleProximal Y,bone_position,LeftLittleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLittleProximal Z,bone_position,LeftLittleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftLowerArm X,bone_position,LeftLowerArm,X,155,1.0,True,
+B Bone Pos LeftLowerArm Y,bone_position,LeftLowerArm,Y,155,1.0,True,
+B Bone Pos LeftLowerArm Z,bone_position,LeftLowerArm,Z,155,1.0,True,
+B Bone Pos LeftLowerLeg X,bone_position,LeftLowerLeg,X,155,1.0,True,
+B Bone Pos LeftLowerLeg Y,bone_position,LeftLowerLeg,Y,155,1.0,True,
+B Bone Pos LeftLowerLeg Z,bone_position,LeftLowerLeg,Z,155,1.0,True,
+B Bone Pos LeftMiddleDistal X,bone_position,LeftMiddleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleDistal Y,bone_position,LeftMiddleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleDistal Z,bone_position,LeftMiddleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleIntermediate X,bone_position,LeftMiddleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleIntermediate Y,bone_position,LeftMiddleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleIntermediate Z,bone_position,LeftMiddleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleProximal X,bone_position,LeftMiddleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleProximal Y,bone_position,LeftMiddleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftMiddleProximal Z,bone_position,LeftMiddleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingDistal X,bone_position,LeftRingDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingDistal Y,bone_position,LeftRingDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingDistal Z,bone_position,LeftRingDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingIntermediate X,bone_position,LeftRingIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingIntermediate Y,bone_position,LeftRingIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingIntermediate Z,bone_position,LeftRingIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingProximal X,bone_position,LeftRingProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingProximal Y,bone_position,LeftRingProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftRingProximal Z,bone_position,LeftRingProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftShoulder X,bone_position,LeftShoulder,X,155,1.0,True,
+B Bone Pos LeftShoulder Y,bone_position,LeftShoulder,Y,155,1.0,True,
+B Bone Pos LeftShoulder Z,bone_position,LeftShoulder,Z,155,1.0,True,
+B Bone Pos LeftThumbDistal X,bone_position,LeftThumbDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbDistal Y,bone_position,LeftThumbDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbDistal Z,bone_position,LeftThumbDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbIntermediate X,bone_position,LeftThumbIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbIntermediate Y,bone_position,LeftThumbIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbIntermediate Z,bone_position,LeftThumbIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbProximal X,bone_position,LeftThumbProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbProximal Y,bone_position,LeftThumbProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftThumbProximal Z,bone_position,LeftThumbProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftToes X,bone_position,LeftToes,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftToes Y,bone_position,LeftToes,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftToes Z,bone_position,LeftToes,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos LeftUpperArm X,bone_position,LeftUpperArm,X,155,1.0,True,
+B Bone Pos LeftUpperArm Y,bone_position,LeftUpperArm,Y,155,1.0,True,
+B Bone Pos LeftUpperArm Z,bone_position,LeftUpperArm,Z,155,1.0,True,
+B Bone Pos LeftUpperLeg X,bone_position,LeftUpperLeg,X,155,1.0,True,
+B Bone Pos LeftUpperLeg Y,bone_position,LeftUpperLeg,Y,155,1.0,True,
+B Bone Pos LeftUpperLeg Z,bone_position,LeftUpperLeg,Z,155,1.0,True,
+B Bone Pos Neck X,bone_position,Neck,X,155,1.0,True,
+B Bone Pos Neck Y,bone_position,Neck,Y,155,1.0,True,
+B Bone Pos Neck Z,bone_position,Neck,Z,155,1.0,True,
+B Bone Pos RightFoot X,bone_position,RightFoot,X,155,1.0,True,
+B Bone Pos RightFoot Y,bone_position,RightFoot,Y,155,1.0,True,
+B Bone Pos RightFoot Z,bone_position,RightFoot,Z,155,1.0,True,
+B Bone Pos RightHand X,bone_position,RightHand,X,155,1.0,True,
+B Bone Pos RightHand Y,bone_position,RightHand,Y,155,1.0,True,
+B Bone Pos RightHand Z,bone_position,RightHand,Z,155,1.0,True,
+B Bone Pos RightIndexDistal X,bone_position,RightIndexDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexDistal Y,bone_position,RightIndexDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexDistal Z,bone_position,RightIndexDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexIntermediate X,bone_position,RightIndexIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexIntermediate Y,bone_position,RightIndexIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexIntermediate Z,bone_position,RightIndexIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexProximal X,bone_position,RightIndexProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexProximal Y,bone_position,RightIndexProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightIndexProximal Z,bone_position,RightIndexProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleDistal X,bone_position,RightLittleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleDistal Y,bone_position,RightLittleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleDistal Z,bone_position,RightLittleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleIntermediate X,bone_position,RightLittleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleIntermediate Y,bone_position,RightLittleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleIntermediate Z,bone_position,RightLittleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleProximal X,bone_position,RightLittleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleProximal Y,bone_position,RightLittleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLittleProximal Z,bone_position,RightLittleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightLowerArm X,bone_position,RightLowerArm,X,155,1.0,True,
+B Bone Pos RightLowerArm Y,bone_position,RightLowerArm,Y,155,1.0,True,
+B Bone Pos RightLowerArm Z,bone_position,RightLowerArm,Z,155,1.0,True,
+B Bone Pos RightLowerLeg X,bone_position,RightLowerLeg,X,155,1.0,True,
+B Bone Pos RightLowerLeg Y,bone_position,RightLowerLeg,Y,155,1.0,True,
+B Bone Pos RightLowerLeg Z,bone_position,RightLowerLeg,Z,155,1.0,True,
+B Bone Pos RightMiddleDistal X,bone_position,RightMiddleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleDistal Y,bone_position,RightMiddleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleDistal Z,bone_position,RightMiddleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleIntermediate X,bone_position,RightMiddleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleIntermediate Y,bone_position,RightMiddleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleIntermediate Z,bone_position,RightMiddleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleProximal X,bone_position,RightMiddleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleProximal Y,bone_position,RightMiddleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightMiddleProximal Z,bone_position,RightMiddleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingDistal X,bone_position,RightRingDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingDistal Y,bone_position,RightRingDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingDistal Z,bone_position,RightRingDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingIntermediate X,bone_position,RightRingIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingIntermediate Y,bone_position,RightRingIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingIntermediate Z,bone_position,RightRingIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingProximal X,bone_position,RightRingProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingProximal Y,bone_position,RightRingProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightRingProximal Z,bone_position,RightRingProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightShoulder X,bone_position,RightShoulder,X,155,1.0,True,
+B Bone Pos RightShoulder Y,bone_position,RightShoulder,Y,155,1.0,True,
+B Bone Pos RightShoulder Z,bone_position,RightShoulder,Z,155,1.0,True,
+B Bone Pos RightThumbDistal X,bone_position,RightThumbDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbDistal Y,bone_position,RightThumbDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbDistal Z,bone_position,RightThumbDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbIntermediate X,bone_position,RightThumbIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbIntermediate Y,bone_position,RightThumbIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbIntermediate Z,bone_position,RightThumbIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbProximal X,bone_position,RightThumbProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbProximal Y,bone_position,RightThumbProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightThumbProximal Z,bone_position,RightThumbProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightToes X,bone_position,RightToes,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightToes Y,bone_position,RightToes,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightToes Z,bone_position,RightToes,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Pos RightUpperArm X,bone_position,RightUpperArm,X,155,1.0,True,
+B Bone Pos RightUpperArm Y,bone_position,RightUpperArm,Y,155,1.0,True,
+B Bone Pos RightUpperArm Z,bone_position,RightUpperArm,Z,155,1.0,True,
+B Bone Pos RightUpperLeg X,bone_position,RightUpperLeg,X,155,1.0,True,
+B Bone Pos RightUpperLeg Y,bone_position,RightUpperLeg,Y,155,1.0,True,
+B Bone Pos RightUpperLeg Z,bone_position,RightUpperLeg,Z,155,1.0,True,
+B Bone Pos Spine X,bone_position,Spine,X,155,1.0,True,
+B Bone Pos Spine Y,bone_position,Spine,Y,155,1.0,True,
+B Bone Pos Spine Z,bone_position,Spine,Z,155,1.0,True,
+B Bone Pos UpperChest X,bone_position,UpperChest,X,155,1.0,True,
+B Bone Pos UpperChest Y,bone_position,UpperChest,Y,155,1.0,True,
+B Bone Pos UpperChest Z,bone_position,UpperChest,Z,155,1.0,True,
+B Bone Rot Chest X,bone_rotation,Chest,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Chest Y,bone_rotation,Chest,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Chest Z,bone_rotation,Chest,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Head X,bone_rotation,Head,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Head Y,bone_rotation,Head,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Head Z,bone_rotation,Head,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Hips X,bone_rotation,Hips,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Hips Y,bone_rotation,Hips,Y,155,1.0,True,
+B Bone Rot Hips Z,bone_rotation,Hips,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftFoot X,bone_rotation,LeftFoot,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftFoot Y,bone_rotation,LeftFoot,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftFoot Z,bone_rotation,LeftFoot,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftHand X,bone_rotation,LeftHand,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftHand Y,bone_rotation,LeftHand,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftHand Z,bone_rotation,LeftHand,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexDistal X,bone_rotation,LeftIndexDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexDistal Y,bone_rotation,LeftIndexDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexDistal Z,bone_rotation,LeftIndexDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexIntermediate X,bone_rotation,LeftIndexIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexIntermediate Y,bone_rotation,LeftIndexIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexIntermediate Z,bone_rotation,LeftIndexIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexProximal X,bone_rotation,LeftIndexProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexProximal Y,bone_rotation,LeftIndexProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftIndexProximal Z,bone_rotation,LeftIndexProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleDistal X,bone_rotation,LeftLittleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleDistal Y,bone_rotation,LeftLittleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleDistal Z,bone_rotation,LeftLittleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleIntermediate X,bone_rotation,LeftLittleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleIntermediate Y,bone_rotation,LeftLittleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleIntermediate Z,bone_rotation,LeftLittleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleProximal X,bone_rotation,LeftLittleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleProximal Y,bone_rotation,LeftLittleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLittleProximal Z,bone_rotation,LeftLittleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLowerArm X,bone_rotation,LeftLowerArm,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLowerArm Y,bone_rotation,LeftLowerArm,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLowerArm Z,bone_rotation,LeftLowerArm,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLowerLeg X,bone_rotation,LeftLowerLeg,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLowerLeg Y,bone_rotation,LeftLowerLeg,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftLowerLeg Z,bone_rotation,LeftLowerLeg,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleDistal X,bone_rotation,LeftMiddleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleDistal Y,bone_rotation,LeftMiddleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleDistal Z,bone_rotation,LeftMiddleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleIntermediate X,bone_rotation,LeftMiddleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleIntermediate Y,bone_rotation,LeftMiddleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleIntermediate Z,bone_rotation,LeftMiddleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleProximal X,bone_rotation,LeftMiddleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleProximal Y,bone_rotation,LeftMiddleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftMiddleProximal Z,bone_rotation,LeftMiddleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingDistal X,bone_rotation,LeftRingDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingDistal Y,bone_rotation,LeftRingDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingDistal Z,bone_rotation,LeftRingDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingIntermediate X,bone_rotation,LeftRingIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingIntermediate Y,bone_rotation,LeftRingIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingIntermediate Z,bone_rotation,LeftRingIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingProximal X,bone_rotation,LeftRingProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingProximal Y,bone_rotation,LeftRingProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftRingProximal Z,bone_rotation,LeftRingProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftShoulder X,bone_rotation,LeftShoulder,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftShoulder Y,bone_rotation,LeftShoulder,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftShoulder Z,bone_rotation,LeftShoulder,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbDistal X,bone_rotation,LeftThumbDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbDistal Y,bone_rotation,LeftThumbDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbDistal Z,bone_rotation,LeftThumbDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbIntermediate X,bone_rotation,LeftThumbIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbIntermediate Y,bone_rotation,LeftThumbIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbIntermediate Z,bone_rotation,LeftThumbIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbProximal X,bone_rotation,LeftThumbProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbProximal Y,bone_rotation,LeftThumbProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftThumbProximal Z,bone_rotation,LeftThumbProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftToes X,bone_rotation,LeftToes,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftToes Y,bone_rotation,LeftToes,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftToes Z,bone_rotation,LeftToes,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftUpperArm X,bone_rotation,LeftUpperArm,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftUpperArm Y,bone_rotation,LeftUpperArm,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftUpperArm Z,bone_rotation,LeftUpperArm,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftUpperLeg X,bone_rotation,LeftUpperLeg,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftUpperLeg Y,bone_rotation,LeftUpperLeg,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot LeftUpperLeg Z,bone_rotation,LeftUpperLeg,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Neck X,bone_rotation,Neck,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Neck Y,bone_rotation,Neck,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Neck Z,bone_rotation,Neck,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightFoot X,bone_rotation,RightFoot,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightFoot Y,bone_rotation,RightFoot,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightFoot Z,bone_rotation,RightFoot,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightHand X,bone_rotation,RightHand,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightHand Y,bone_rotation,RightHand,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightHand Z,bone_rotation,RightHand,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexDistal X,bone_rotation,RightIndexDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexDistal Y,bone_rotation,RightIndexDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexDistal Z,bone_rotation,RightIndexDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexIntermediate X,bone_rotation,RightIndexIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexIntermediate Y,bone_rotation,RightIndexIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexIntermediate Z,bone_rotation,RightIndexIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexProximal X,bone_rotation,RightIndexProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexProximal Y,bone_rotation,RightIndexProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightIndexProximal Z,bone_rotation,RightIndexProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleDistal X,bone_rotation,RightLittleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleDistal Y,bone_rotation,RightLittleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleDistal Z,bone_rotation,RightLittleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleIntermediate X,bone_rotation,RightLittleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleIntermediate Y,bone_rotation,RightLittleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleIntermediate Z,bone_rotation,RightLittleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleProximal X,bone_rotation,RightLittleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleProximal Y,bone_rotation,RightLittleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLittleProximal Z,bone_rotation,RightLittleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLowerArm X,bone_rotation,RightLowerArm,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLowerArm Y,bone_rotation,RightLowerArm,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLowerArm Z,bone_rotation,RightLowerArm,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLowerLeg X,bone_rotation,RightLowerLeg,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLowerLeg Y,bone_rotation,RightLowerLeg,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightLowerLeg Z,bone_rotation,RightLowerLeg,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleDistal X,bone_rotation,RightMiddleDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleDistal Y,bone_rotation,RightMiddleDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleDistal Z,bone_rotation,RightMiddleDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleIntermediate X,bone_rotation,RightMiddleIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleIntermediate Y,bone_rotation,RightMiddleIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleIntermediate Z,bone_rotation,RightMiddleIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleProximal X,bone_rotation,RightMiddleProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleProximal Y,bone_rotation,RightMiddleProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightMiddleProximal Z,bone_rotation,RightMiddleProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingDistal X,bone_rotation,RightRingDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingDistal Y,bone_rotation,RightRingDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingDistal Z,bone_rotation,RightRingDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingIntermediate X,bone_rotation,RightRingIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingIntermediate Y,bone_rotation,RightRingIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingIntermediate Z,bone_rotation,RightRingIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingProximal X,bone_rotation,RightRingProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingProximal Y,bone_rotation,RightRingProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightRingProximal Z,bone_rotation,RightRingProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightShoulder X,bone_rotation,RightShoulder,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightShoulder Y,bone_rotation,RightShoulder,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightShoulder Z,bone_rotation,RightShoulder,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbDistal X,bone_rotation,RightThumbDistal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbDistal Y,bone_rotation,RightThumbDistal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbDistal Z,bone_rotation,RightThumbDistal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbIntermediate X,bone_rotation,RightThumbIntermediate,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbIntermediate Y,bone_rotation,RightThumbIntermediate,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbIntermediate Z,bone_rotation,RightThumbIntermediate,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbProximal X,bone_rotation,RightThumbProximal,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbProximal Y,bone_rotation,RightThumbProximal,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightThumbProximal Z,bone_rotation,RightThumbProximal,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightToes X,bone_rotation,RightToes,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightToes Y,bone_rotation,RightToes,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightToes Z,bone_rotation,RightToes,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightUpperArm X,bone_rotation,RightUpperArm,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightUpperArm Y,bone_rotation,RightUpperArm,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightUpperArm Z,bone_rotation,RightUpperArm,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightUpperLeg X,bone_rotation,RightUpperLeg,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightUpperLeg Y,bone_rotation,RightUpperLeg,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot RightUpperLeg Z,bone_rotation,RightUpperLeg,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Spine X,bone_rotation,Spine,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Spine Y,bone_rotation,Spine,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot Spine Z,bone_rotation,Spine,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot UpperChest X,bone_rotation,UpperChest,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot UpperChest Y,bone_rotation,UpperChest,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Bone Rot UpperChest Z,bone_rotation,UpperChest,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexDistal Left X,hand_bone_position,IndexDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexDistal Left Y,hand_bone_position,IndexDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexDistal Left Z,hand_bone_position,IndexDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexDistal Right X,hand_bone_position,IndexDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexDistal Right Y,hand_bone_position,IndexDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexDistal Right Z,hand_bone_position,IndexDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexIntermediate Left X,hand_bone_position,IndexIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexIntermediate Left Y,hand_bone_position,IndexIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexIntermediate Left Z,hand_bone_position,IndexIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexIntermediate Right X,hand_bone_position,IndexIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexIntermediate Right Y,hand_bone_position,IndexIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexIntermediate Right Z,hand_bone_position,IndexIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexMetacarpal Left X,hand_bone_position,IndexMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexMetacarpal Left Y,hand_bone_position,IndexMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexMetacarpal Left Z,hand_bone_position,IndexMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexMetacarpal Right X,hand_bone_position,IndexMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexMetacarpal Right Y,hand_bone_position,IndexMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexMetacarpal Right Z,hand_bone_position,IndexMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexProximal Left X,hand_bone_position,IndexProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexProximal Left Y,hand_bone_position,IndexProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexProximal Left Z,hand_bone_position,IndexProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexProximal Right X,hand_bone_position,IndexProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexProximal Right Y,hand_bone_position,IndexProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexProximal Right Z,hand_bone_position,IndexProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexTip Left X,hand_bone_position,IndexTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexTip Left Y,hand_bone_position,IndexTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexTip Left Z,hand_bone_position,IndexTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexTip Right X,hand_bone_position,IndexTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexTip Right Y,hand_bone_position,IndexTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos IndexTip Right Z,hand_bone_position,IndexTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleDistal Left X,hand_bone_position,LittleDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleDistal Left Y,hand_bone_position,LittleDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleDistal Left Z,hand_bone_position,LittleDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleDistal Right X,hand_bone_position,LittleDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleDistal Right Y,hand_bone_position,LittleDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleDistal Right Z,hand_bone_position,LittleDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleIntermediate Left X,hand_bone_position,LittleIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleIntermediate Left Y,hand_bone_position,LittleIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleIntermediate Left Z,hand_bone_position,LittleIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleIntermediate Right X,hand_bone_position,LittleIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleIntermediate Right Y,hand_bone_position,LittleIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleIntermediate Right Z,hand_bone_position,LittleIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleMetacarpal Left X,hand_bone_position,LittleMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleMetacarpal Left Y,hand_bone_position,LittleMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleMetacarpal Left Z,hand_bone_position,LittleMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleMetacarpal Right X,hand_bone_position,LittleMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleMetacarpal Right Y,hand_bone_position,LittleMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleMetacarpal Right Z,hand_bone_position,LittleMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleProximal Left X,hand_bone_position,LittleProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleProximal Left Y,hand_bone_position,LittleProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleProximal Left Z,hand_bone_position,LittleProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleProximal Right X,hand_bone_position,LittleProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleProximal Right Y,hand_bone_position,LittleProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleProximal Right Z,hand_bone_position,LittleProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleTip Left X,hand_bone_position,LittleTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleTip Left Y,hand_bone_position,LittleTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleTip Left Z,hand_bone_position,LittleTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleTip Right X,hand_bone_position,LittleTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleTip Right Y,hand_bone_position,LittleTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos LittleTip Right Z,hand_bone_position,LittleTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleDistal Left X,hand_bone_position,MiddleDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleDistal Left Y,hand_bone_position,MiddleDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleDistal Left Z,hand_bone_position,MiddleDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleDistal Right X,hand_bone_position,MiddleDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleDistal Right Y,hand_bone_position,MiddleDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleDistal Right Z,hand_bone_position,MiddleDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleIntermediate Left X,hand_bone_position,MiddleIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleIntermediate Left Y,hand_bone_position,MiddleIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleIntermediate Left Z,hand_bone_position,MiddleIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleIntermediate Right X,hand_bone_position,MiddleIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleIntermediate Right Y,hand_bone_position,MiddleIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleIntermediate Right Z,hand_bone_position,MiddleIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleMetacarpal Left X,hand_bone_position,MiddleMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleMetacarpal Left Y,hand_bone_position,MiddleMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleMetacarpal Left Z,hand_bone_position,MiddleMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleMetacarpal Right X,hand_bone_position,MiddleMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleMetacarpal Right Y,hand_bone_position,MiddleMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleMetacarpal Right Z,hand_bone_position,MiddleMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleProximal Left X,hand_bone_position,MiddleProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleProximal Left Y,hand_bone_position,MiddleProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleProximal Left Z,hand_bone_position,MiddleProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleProximal Right X,hand_bone_position,MiddleProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleProximal Right Y,hand_bone_position,MiddleProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleProximal Right Z,hand_bone_position,MiddleProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleTip Left X,hand_bone_position,MiddleTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleTip Left Y,hand_bone_position,MiddleTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleTip Left Z,hand_bone_position,MiddleTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleTip Right X,hand_bone_position,MiddleTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleTip Right Y,hand_bone_position,MiddleTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos MiddleTip Right Z,hand_bone_position,MiddleTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Palm Left X,hand_bone_position,Palm Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Palm Left Y,hand_bone_position,Palm Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Palm Left Z,hand_bone_position,Palm Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Palm Right X,hand_bone_position,Palm Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Palm Right Y,hand_bone_position,Palm Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Palm Right Z,hand_bone_position,Palm Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingDistal Left X,hand_bone_position,RingDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingDistal Left Y,hand_bone_position,RingDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingDistal Left Z,hand_bone_position,RingDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingDistal Right X,hand_bone_position,RingDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingDistal Right Y,hand_bone_position,RingDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingDistal Right Z,hand_bone_position,RingDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingIntermediate Left X,hand_bone_position,RingIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingIntermediate Left Y,hand_bone_position,RingIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingIntermediate Left Z,hand_bone_position,RingIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingIntermediate Right X,hand_bone_position,RingIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingIntermediate Right Y,hand_bone_position,RingIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingIntermediate Right Z,hand_bone_position,RingIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingMetacarpal Left X,hand_bone_position,RingMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingMetacarpal Left Y,hand_bone_position,RingMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingMetacarpal Left Z,hand_bone_position,RingMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingMetacarpal Right X,hand_bone_position,RingMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingMetacarpal Right Y,hand_bone_position,RingMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingMetacarpal Right Z,hand_bone_position,RingMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingProximal Left X,hand_bone_position,RingProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingProximal Left Y,hand_bone_position,RingProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingProximal Left Z,hand_bone_position,RingProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingProximal Right X,hand_bone_position,RingProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingProximal Right Y,hand_bone_position,RingProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingProximal Right Z,hand_bone_position,RingProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingTip Left X,hand_bone_position,RingTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingTip Left Y,hand_bone_position,RingTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingTip Left Z,hand_bone_position,RingTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingTip Right X,hand_bone_position,RingTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingTip Right Y,hand_bone_position,RingTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos RingTip Right Z,hand_bone_position,RingTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbDistal Left X,hand_bone_position,ThumbDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbDistal Left Y,hand_bone_position,ThumbDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbDistal Left Z,hand_bone_position,ThumbDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbDistal Right X,hand_bone_position,ThumbDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbDistal Right Y,hand_bone_position,ThumbDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbDistal Right Z,hand_bone_position,ThumbDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbMetacarpal Left X,hand_bone_position,ThumbMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbMetacarpal Left Y,hand_bone_position,ThumbMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbMetacarpal Left Z,hand_bone_position,ThumbMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbMetacarpal Right X,hand_bone_position,ThumbMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbMetacarpal Right Y,hand_bone_position,ThumbMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbMetacarpal Right Z,hand_bone_position,ThumbMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbProximal Left X,hand_bone_position,ThumbProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbProximal Left Y,hand_bone_position,ThumbProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbProximal Left Z,hand_bone_position,ThumbProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbProximal Right X,hand_bone_position,ThumbProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbProximal Right Y,hand_bone_position,ThumbProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbProximal Right Z,hand_bone_position,ThumbProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbTip Left X,hand_bone_position,ThumbTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbTip Left Y,hand_bone_position,ThumbTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbTip Left Z,hand_bone_position,ThumbTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbTip Right X,hand_bone_position,ThumbTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbTip Right Y,hand_bone_position,ThumbTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos ThumbTip Right Z,hand_bone_position,ThumbTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Wrist Left X,hand_bone_position,Wrist Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Wrist Left Y,hand_bone_position,Wrist Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Wrist Left Z,hand_bone_position,Wrist Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Wrist Right X,hand_bone_position,Wrist Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Wrist Right Y,hand_bone_position,Wrist Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Pos Wrist Right Z,hand_bone_position,Wrist Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexDistal Left X,hand_bone_rotation,IndexDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexDistal Left Y,hand_bone_rotation,IndexDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexDistal Left Z,hand_bone_rotation,IndexDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexDistal Right X,hand_bone_rotation,IndexDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexDistal Right Y,hand_bone_rotation,IndexDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexDistal Right Z,hand_bone_rotation,IndexDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexIntermediate Left X,hand_bone_rotation,IndexIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexIntermediate Left Y,hand_bone_rotation,IndexIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexIntermediate Left Z,hand_bone_rotation,IndexIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexIntermediate Right X,hand_bone_rotation,IndexIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexIntermediate Right Y,hand_bone_rotation,IndexIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexIntermediate Right Z,hand_bone_rotation,IndexIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexMetacarpal Left X,hand_bone_rotation,IndexMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexMetacarpal Left Y,hand_bone_rotation,IndexMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexMetacarpal Left Z,hand_bone_rotation,IndexMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexMetacarpal Right X,hand_bone_rotation,IndexMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexMetacarpal Right Y,hand_bone_rotation,IndexMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexMetacarpal Right Z,hand_bone_rotation,IndexMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexProximal Left X,hand_bone_rotation,IndexProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexProximal Left Y,hand_bone_rotation,IndexProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexProximal Left Z,hand_bone_rotation,IndexProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexProximal Right X,hand_bone_rotation,IndexProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexProximal Right Y,hand_bone_rotation,IndexProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexProximal Right Z,hand_bone_rotation,IndexProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexTip Left X,hand_bone_rotation,IndexTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexTip Left Y,hand_bone_rotation,IndexTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexTip Left Z,hand_bone_rotation,IndexTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexTip Right X,hand_bone_rotation,IndexTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexTip Right Y,hand_bone_rotation,IndexTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot IndexTip Right Z,hand_bone_rotation,IndexTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleDistal Left X,hand_bone_rotation,LittleDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleDistal Left Y,hand_bone_rotation,LittleDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleDistal Left Z,hand_bone_rotation,LittleDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleDistal Right X,hand_bone_rotation,LittleDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleDistal Right Y,hand_bone_rotation,LittleDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleDistal Right Z,hand_bone_rotation,LittleDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleIntermediate Left X,hand_bone_rotation,LittleIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleIntermediate Left Y,hand_bone_rotation,LittleIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleIntermediate Left Z,hand_bone_rotation,LittleIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleIntermediate Right X,hand_bone_rotation,LittleIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleIntermediate Right Y,hand_bone_rotation,LittleIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleIntermediate Right Z,hand_bone_rotation,LittleIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleMetacarpal Left X,hand_bone_rotation,LittleMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleMetacarpal Left Y,hand_bone_rotation,LittleMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleMetacarpal Left Z,hand_bone_rotation,LittleMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleMetacarpal Right X,hand_bone_rotation,LittleMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleMetacarpal Right Y,hand_bone_rotation,LittleMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleMetacarpal Right Z,hand_bone_rotation,LittleMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleProximal Left X,hand_bone_rotation,LittleProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleProximal Left Y,hand_bone_rotation,LittleProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleProximal Left Z,hand_bone_rotation,LittleProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleProximal Right X,hand_bone_rotation,LittleProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleProximal Right Y,hand_bone_rotation,LittleProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleProximal Right Z,hand_bone_rotation,LittleProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleTip Left X,hand_bone_rotation,LittleTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleTip Left Y,hand_bone_rotation,LittleTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleTip Left Z,hand_bone_rotation,LittleTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleTip Right X,hand_bone_rotation,LittleTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleTip Right Y,hand_bone_rotation,LittleTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot LittleTip Right Z,hand_bone_rotation,LittleTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleDistal Left X,hand_bone_rotation,MiddleDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleDistal Left Y,hand_bone_rotation,MiddleDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleDistal Left Z,hand_bone_rotation,MiddleDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleDistal Right X,hand_bone_rotation,MiddleDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleDistal Right Y,hand_bone_rotation,MiddleDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleDistal Right Z,hand_bone_rotation,MiddleDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleIntermediate Left X,hand_bone_rotation,MiddleIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleIntermediate Left Y,hand_bone_rotation,MiddleIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleIntermediate Left Z,hand_bone_rotation,MiddleIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleIntermediate Right X,hand_bone_rotation,MiddleIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleIntermediate Right Y,hand_bone_rotation,MiddleIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleIntermediate Right Z,hand_bone_rotation,MiddleIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleMetacarpal Left X,hand_bone_rotation,MiddleMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleMetacarpal Left Y,hand_bone_rotation,MiddleMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleMetacarpal Left Z,hand_bone_rotation,MiddleMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleMetacarpal Right X,hand_bone_rotation,MiddleMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleMetacarpal Right Y,hand_bone_rotation,MiddleMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleMetacarpal Right Z,hand_bone_rotation,MiddleMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleProximal Left X,hand_bone_rotation,MiddleProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleProximal Left Y,hand_bone_rotation,MiddleProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleProximal Left Z,hand_bone_rotation,MiddleProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleProximal Right X,hand_bone_rotation,MiddleProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleProximal Right Y,hand_bone_rotation,MiddleProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleProximal Right Z,hand_bone_rotation,MiddleProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleTip Left X,hand_bone_rotation,MiddleTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleTip Left Y,hand_bone_rotation,MiddleTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleTip Left Z,hand_bone_rotation,MiddleTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleTip Right X,hand_bone_rotation,MiddleTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleTip Right Y,hand_bone_rotation,MiddleTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot MiddleTip Right Z,hand_bone_rotation,MiddleTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Palm Left X,hand_bone_rotation,Palm Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Palm Left Y,hand_bone_rotation,Palm Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Palm Left Z,hand_bone_rotation,Palm Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Palm Right X,hand_bone_rotation,Palm Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Palm Right Y,hand_bone_rotation,Palm Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Palm Right Z,hand_bone_rotation,Palm Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingDistal Left X,hand_bone_rotation,RingDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingDistal Left Y,hand_bone_rotation,RingDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingDistal Left Z,hand_bone_rotation,RingDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingDistal Right X,hand_bone_rotation,RingDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingDistal Right Y,hand_bone_rotation,RingDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingDistal Right Z,hand_bone_rotation,RingDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingIntermediate Left X,hand_bone_rotation,RingIntermediate Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingIntermediate Left Y,hand_bone_rotation,RingIntermediate Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingIntermediate Left Z,hand_bone_rotation,RingIntermediate Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingIntermediate Right X,hand_bone_rotation,RingIntermediate Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingIntermediate Right Y,hand_bone_rotation,RingIntermediate Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingIntermediate Right Z,hand_bone_rotation,RingIntermediate Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingMetacarpal Left X,hand_bone_rotation,RingMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingMetacarpal Left Y,hand_bone_rotation,RingMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingMetacarpal Left Z,hand_bone_rotation,RingMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingMetacarpal Right X,hand_bone_rotation,RingMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingMetacarpal Right Y,hand_bone_rotation,RingMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingMetacarpal Right Z,hand_bone_rotation,RingMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingProximal Left X,hand_bone_rotation,RingProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingProximal Left Y,hand_bone_rotation,RingProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingProximal Left Z,hand_bone_rotation,RingProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingProximal Right X,hand_bone_rotation,RingProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingProximal Right Y,hand_bone_rotation,RingProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingProximal Right Z,hand_bone_rotation,RingProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingTip Left X,hand_bone_rotation,RingTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingTip Left Y,hand_bone_rotation,RingTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingTip Left Z,hand_bone_rotation,RingTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingTip Right X,hand_bone_rotation,RingTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingTip Right Y,hand_bone_rotation,RingTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot RingTip Right Z,hand_bone_rotation,RingTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbDistal Left X,hand_bone_rotation,ThumbDistal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbDistal Left Y,hand_bone_rotation,ThumbDistal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbDistal Left Z,hand_bone_rotation,ThumbDistal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbDistal Right X,hand_bone_rotation,ThumbDistal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbDistal Right Y,hand_bone_rotation,ThumbDistal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbDistal Right Z,hand_bone_rotation,ThumbDistal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbMetacarpal Left X,hand_bone_rotation,ThumbMetacarpal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbMetacarpal Left Y,hand_bone_rotation,ThumbMetacarpal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbMetacarpal Left Z,hand_bone_rotation,ThumbMetacarpal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbMetacarpal Right X,hand_bone_rotation,ThumbMetacarpal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbMetacarpal Right Y,hand_bone_rotation,ThumbMetacarpal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbMetacarpal Right Z,hand_bone_rotation,ThumbMetacarpal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbProximal Left X,hand_bone_rotation,ThumbProximal Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbProximal Left Y,hand_bone_rotation,ThumbProximal Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbProximal Left Z,hand_bone_rotation,ThumbProximal Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbProximal Right X,hand_bone_rotation,ThumbProximal Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbProximal Right Y,hand_bone_rotation,ThumbProximal Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbProximal Right Z,hand_bone_rotation,ThumbProximal Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbTip Left X,hand_bone_rotation,ThumbTip Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbTip Left Y,hand_bone_rotation,ThumbTip Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbTip Left Z,hand_bone_rotation,ThumbTip Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbTip Right X,hand_bone_rotation,ThumbTip Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbTip Right Y,hand_bone_rotation,ThumbTip Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot ThumbTip Right Z,hand_bone_rotation,ThumbTip Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Wrist Left X,hand_bone_rotation,Wrist Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Wrist Left Y,hand_bone_rotation,Wrist Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Wrist Left Z,hand_bone_rotation,Wrist Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Wrist Right X,hand_bone_rotation,Wrist Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Wrist Right Y,hand_bone_rotation,Wrist Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Hand Bone Rot Wrist Right Z,hand_bone_rotation,Wrist Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Pos Left X,root_hand_position,Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Pos Left Y,root_hand_position,Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Pos Left Z,root_hand_position,Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Pos Right X,root_hand_position,Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Pos Right Y,root_hand_position,Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Pos Right Z,root_hand_position,Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Rot Left X,root_hand_rotation,Left,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Rot Left Y,root_hand_rotation,Left,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Rot Left Z,root_hand_rotation,Left,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Rot Right X,root_hand_rotation,Right,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Rot Right Y,root_hand_rotation,Right,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B Root Hand Rot Right Z,root_hand_rotation,Right,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B VR Pos X,vr_position,VR/avatar,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B VR Pos Y,vr_position,VR/avatar,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B VR Pos Z,vr_position,VR/avatar,Z,155,1.0,False,audited_but_not_in_fixed_joint_set
+B VR Rot X,vr_rotation,VR/avatar,X,155,1.0,False,audited_but_not_in_fixed_joint_set
+B VR Rot Y,vr_rotation,VR/avatar,Y,155,1.0,False,audited_but_not_in_fixed_joint_set
+B VR Rot Z,vr_rotation,VR/avatar,Z,155,1.0,False,audited_but_not_in_fixed_joint_set

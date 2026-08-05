@@ -2,6 +2,7 @@
   "scenario": 3,
   "description": "Orthogonal approach \u2014 pedestrian near vehicle lane, same side",
   "shape": "circle",
+  "zone_type": "observed_path",
   "center_x_m": 11.846832321674952,
   "center_z_m": 58.39296749693004,
   "radius_m": 2.0,

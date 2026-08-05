@@ -124,3 +124,112 @@ Options include `--scenarios`, `--input`, `--output-dir`,
 zone buffer is 2.0 m. Scenario-level JSON metadata reports whether the observed
 path geometry supports the estimated shared zone; unsupported zones are not
 silently interpreted as crossing conflicts.
+
+Scenarios 3, 7, 15, and 21 retain that observed-path circular definition.
+Scenarios 12 and 16 instead use one fixed scenario-level potential zone: the
+intersection of a 0.75 m half-width representative pedestrian corridor and a
+1.35 m half-width counterfactual vehicle corridor. Scenario 12 continues the
+east-to-west approach lane straight. In world coordinates, Scenario 16
+approaches south (decreasing Z) and its alternative turns east (increasing X),
+which is a vehicle-relative left turn. These zones represent unresolved
+plausible maneuvers, not realized vehicle occupancy.
+
+All coordinates and corridor widths are in meters. The representative path is
+the pointwise median of recording paths resampled at 160 equal path-progress
+increments. The corridor intersection is evaluated on a deterministic 0.05 m
+world-coordinate grid and stored as its convex-hull polygon. Scenario 16 uses
+an 8.0 m circular turn radius. These are uncertainty-based interaction zones,
+not observed collision points: they assume the configured alternative maneuver
+was plausible until commitment, do not model driver signaling or sight lines,
+and do not imply that the recorded vehicle occupied the polygon. Recordings in
+which the pedestrian never enters retain missing entry/exit values and an
+explicit `never_entered_zone` status; actual vehicle entry/exit is likewise
+not applicable for these counterfactual zones.
+
+Pedestrian entry, center/closest-point, and exit are mapped from each recording's
+observed positions. Entry and exit speeds and a documented one-second-before
+versus one-second-after entry speed/acceleration window are included in the
+event CSV. For potential zones, actual vehicle occupancy columns remain empty;
+counterfactual arrival uses distance along the configured alternative from the
+maneuver-commitment position divided by median observed approach speed above
+0.25 m/s. `delta_TTZ_seconds` is pedestrian entry time minus counterfactual
+vehicle arrival time, so a negative value means the pedestrian arrives first.
+
+Running `python -m src.visualization.interactive_onset_speed` after this analysis
+regenerates pedestrian graphs in `outputs/interactive_speed_plots` and matching
+vehicle graphs in `outputs/interactive_vehicle_speed_plots`. Both use time zero
+at each recording's detected pedestrian movement onset, retain participant
+legend toggles, and transform all event timestamps with that same onset offset.
+
+## Entry-distance manual review
+
+After the trajectory and conflict-zone outputs exist, generate descriptive
+within-scenario rankings and a visual manual-review package with:
+
+```powershell
+python -m src.analysis.entry_distance_manual_review
+```
+
+For each geometrically supported scenario, both actors' positions are linearly
+interpolated at the same first conflict-zone entry time. The synchronized
+horizontal distance is compared only with the ordinary arithmetic mean for
+that scenario. By default, the three largest absolute differences are flagged
+for manual inspection. Ties are ordered deterministically by recording ID so
+the review package contains exactly three recordings when at least three valid
+measurements exist. The flag is not an interaction classification and no
+automatic interaction or no-interaction label is produced.
+
+Artifacts are written to `outputs/entry_distance_manual_review`. Use
+`--top-n-review` to change the review count or `--overwrite` to replace that
+output directory on a later run.
+
+## Avatar position and rotation plots
+
+Render the six raw avatar position/rotation channels for every decoded CSV
+found recursively for PedNYC1, PedNYC2, and PedNYC3 with:
+
+```powershell
+python -m src.visualization.avatar_position_rotation
+```
+
+Figures are written beneath the top-level `avatar graphs` directory. The
+workflow normalizes inconsistent header whitespace and punctuation, detects
+the CSV delimiter, preserves missing values as plot gaps, and uses
+`ScenarioTime` without resampling. It writes CSV and JSON audit reports beside
+the participant folders. Existing figure paths are not replaced unless
+`--overwrite` is supplied; `--data-root`, `--output-root`, `--participants`,
+and `--dpi` provide reusable overrides.
+
+To add unsmoothed horizontal/3D speed and acceleration diagnostics while
+leaving those six-panel figures untouched, run:
+
+```powershell
+python -m src.visualization.avatar_speed_acceleration
+```
+
+This creates separate ten-panel figures, per-sample inspection CSVs, and
+`avatar graphs/avatar_speed_acceleration_summary.csv`. Invalid, duplicate,
+missing, and negative `ScenarioTime` intervals remain in the sample tables but
+do not receive derivatives. The default labels positions as raw units and does
+not apply meter-based flags because the repository has no independent avatar
+position calibration. If metric calibration is established, pass
+`--position-units meters`; the configurable defaults are then 5 m/s and
+20 m/s².
+
+## Behavioral clustering analysis
+
+After the validated trajectory and conflict-zone workflows have completed,
+run the deterministic trial-level behavioral grouping analysis with:
+
+```powershell
+python -m src.analysis.behavior_clustering --seed 42 --ground-truth XCPedestrian-GroundTruth-RERUN.xlsx
+```
+
+The analysis writes only beneath `outputs/behavior_clustering`. It uses the
+validated `B VR Pos X/Z` pedestrian coordinates and `A car Pos X/Z` vehicle
+coordinates, aligns recordings to a supported conflict-zone event or minimum
+synchronized actor distance, applies scenario-shared rigid trajectory
+normalization, and evaluates Ward, Gaussian-mixture, and k-means solutions.
+Ground-truth annotations are joined only after cluster assignments are fixed.
+The report explicitly returns “no stable separation” when the pre-specified
+bootstrap stability, silhouette, and minimum-cluster-size criteria are not met.

@@ -1,0 +1,21 @@
+{
+  "config": {
+    "seed": 42,
+    "window_before_s": 3.0,
+    "window_after_s": 3.0,
+    "sequence_length": 61,
+    "folds": 5,
+    "lstm_hidden_size": 12,
+    "lstm_epochs": 60,
+    "lstm_learning_rate": 0.008,
+    "lstm_l2": 0.0001,
+    "bootstrap_repetitions": 500,
+    "joint_spike_speed_mps": 10.0
+  },
+  "target": "observable pedestrian hand gesture Yes/No",
+  "unknown_policy": "exclude; never map Unknown to No",
+  "split_policy": "StratifiedGroupKFold grouped by participant_id",
+  "lstm": "small deterministic NumPy LSTM; explicit joint masks concatenated to inputs; class-weighted BCE",
+  "context": "vehicle speed/acceleration, planar actor distance, conflict timing/order, indicators, scenario",
+  "acceleration_policy": "joint accelerations excluded as unstable double derivatives"
+}

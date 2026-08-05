@@ -1,0 +1,9 @@
+{
+  "purpose": "Within-scenario descriptive ranking for manual review only",
+  "top_n_review": 3,
+  "distance_formula": "sqrt((car_x-pedestrian_x)^2 + (car_z-pedestrian_z)^2)",
+  "time_synchronization": "Both actor positions linearly interpolated at the same first valid conflict-zone entry time",
+  "scenario_statistic": "ordinary arithmetic mean of valid entry-event distances",
+  "tie_handling": "Absolute-deviation ties are ordered by recording_identifier; exactly top_n are flagged when available",
+  "automatic_interaction_classification": false
+}

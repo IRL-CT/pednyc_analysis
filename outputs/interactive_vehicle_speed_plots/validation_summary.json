@@ -1,0 +1,24 @@
+[
+  {
+    "scenario": 12,
+    "maximum_n": 26,
+    "minimum_summary_n": 13,
+    "coverage_fraction": 0.5,
+    "participant_count": 26,
+    "minimum_end_time": 13.143738000000004,
+    "maximum_end_time": 83.377441,
+    "low_coverage_points": 694,
+    "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_vehicle_speed_plots\\scenario_12_onset_aligned_vehicle_speed.html"
+  },
+  {
+    "scenario": 16,
+    "maximum_n": 25,
+    "minimum_summary_n": 13,
+    "coverage_fraction": 0.5,
+    "participant_count": 25,
+    "minimum_end_time": 10.234864000000002,
+    "maximum_end_time": 39.882324,
+    "low_coverage_points": 261,
+    "output": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\outputs\\interactive_vehicle_speed_plots\\scenario_16_onset_aligned_vehicle_speed.html"
+  }
+]

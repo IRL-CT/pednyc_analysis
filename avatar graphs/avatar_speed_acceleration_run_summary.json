@@ -1,0 +1,13 @@
+{
+  "generated_at_utc": "2026-08-03T15:32:44.106554+00:00",
+  "data_root": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\data\\processed",
+  "files_discovered": 40,
+  "files_processed": 40,
+  "figures_created": 40,
+  "position_units": "raw",
+  "thresholds_applied": false,
+  "speed_threshold": null,
+  "acceleration_threshold": null,
+  "unit_rationale": "Raw units used: repository code says Unity world coordinates are treated as meters but also states that no independent calibration artifact was found.",
+  "failures": []
+}

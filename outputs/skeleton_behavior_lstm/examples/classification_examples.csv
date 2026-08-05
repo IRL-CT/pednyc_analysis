@@ -1,0 +1,11 @@
+model,recording_identifier,participant_id,true_label,probability_yes,predicted_label,correct,confidence
+multimodal_lstm,PedNYC9_scenario16,PedNYC9,No,0.000568057918474226,No,True,0.49943194208152575
+multimodal_lstm,PedNYC19_scenario16,PedNYC19,No,0.0010782146418832723,No,True,0.4989217853581167
+multimodal_lstm,PedNYC1_scenario16,PedNYC1,No,0.0011526088720579836,No,True,0.498847391127942
+multimodal_lstm,PedNYC5_scenario12,PedNYC5,No,0.0013515311437875394,No,True,0.49864846885621245
+multimodal_lstm,PedNYC12_scenario16,PedNYC12,No,0.0014052612100624259,No,True,0.4985947387899376
+multimodal_lstm,PedNYC15_scenario12,PedNYC15,Yes,0.0006306874810230463,No,False,0.4993693125189769
+multimodal_lstm,PedNYC29_scenario12,PedNYC29,Yes,0.004733797538328296,No,False,0.4952662024616717
+multimodal_lstm,PedNYC28_scenario21,PedNYC28,Yes,0.006854479113540368,No,False,0.49314552088645963
+multimodal_lstm,PedNYC24_scenario21,PedNYC24,Yes,0.007170139756434357,No,False,0.4928298602435656
+multimodal_lstm,PedNYC11_scenario15,PedNYC11,Yes,0.009819886688011885,No,False,0.49018011331198813

@@ -5,11 +5,14 @@ import numpy as np
 import pandas as pd
 
 from src.analysis.conflict_zone_analysis import (
+    define_conflict_zone,
+    get_conflict_zone_for_scenario,
     entry_order,
     occupancy_interval,
     occupancy_overlap,
     segment_intersection,
     synchronized_distance,
+    zone_membership,
 )
 from src.analysis.trajectory_analysis import (
     deviation_frame,
@@ -67,6 +70,52 @@ class TrajectoryAnalysisTests(unittest.TestCase):
 
 
 class ConflictAnalysisTests(unittest.TestCase):
+    @staticmethod
+    def _scenario_traces(scenario: int) -> pd.DataFrame:
+        count = 160
+        if scenario == 12:
+            veh_x, veh_z = np.linspace(5, 0, count), np.zeros(count)
+            ped_x, ped_z = np.zeros(count), np.linspace(-2, 2, count)
+        elif scenario == 16:
+            veh_x, veh_z = np.zeros(count), np.linspace(10, 0, count)
+            ped_x, ped_z = np.linspace(-2, 2, count), np.full(count, 2.0)
+        else:
+            veh_x, veh_z = np.linspace(-2, 2, count), np.zeros(count)
+            ped_x, ped_z = np.zeros(count), np.linspace(-2, 2, count)
+        return pd.DataFrame({
+            "recording_identifier": ["synthetic"] * count,
+            "scenario_time": np.linspace(0, 10, count),
+            "ped_x": ped_x, "ped_z": ped_z,
+            "veh_x": veh_x, "veh_z": veh_z,
+        })
+
+    def test_scenarios_12_and_16_use_deterministic_turn_uncertainty_polygons(self) -> None:
+        for scenario in (12, 16):
+            traces = self._scenario_traces(scenario)
+            first = get_conflict_zone_for_scenario(scenario, traces)
+            second = get_conflict_zone_for_scenario(scenario, traces)
+            self.assertEqual(first["conflict_zone_method"], "turn_uncertainty")
+            self.assertEqual(first["shape"], "corridor_intersection_polygon")
+            self.assertGreaterEqual(len(first["polygon_xz_m"]), 3)
+            np.testing.assert_allclose(first["polygon_xz_m"], second["polygon_xz_m"])
+
+    def test_existing_intersection_scenario_retains_geometric_method(self) -> None:
+        zone = get_conflict_zone_for_scenario(3, self._scenario_traces(3))
+        self.assertEqual(zone["conflict_zone_method"], "geometric_intersection")
+        self.assertEqual(zone["shape"], "circle")
+
+    def test_polygon_zone_membership(self) -> None:
+        zone = {"shape": "corridor_intersection_polygon", "polygon_xz_m": [[0, 0], [2, 0], [2, 2], [0, 2]]}
+        result = zone_membership(np.array([1.0, 3.0]), np.array([1.0, 1.0]), zone)
+        self.assertEqual(result.tolist(), [True, False])
+
+    def test_polygon_entry_and_never_entered_outcome(self) -> None:
+        zone = {"shape": "corridor_intersection_polygon", "polygon_xz_m": [[0, 0], [2, 0], [2, 2], [0, 2]]}
+        entered = occupancy_interval(np.arange(4.0), np.array([-1, 1, 1, 3]), np.ones(4), zone)
+        missed = occupancy_interval(np.arange(3.0), np.array([3, 4, 5]), np.ones(3), zone)
+        self.assertEqual(entered, (1.0, 2.0))
+        self.assertTrue(all(math.isnan(value) for value in missed))
+
     def test_segment_intersection(self) -> None:
         point = segment_intersection(
             np.array([0.0, 0.0]), np.array([2.0, 0.0]),

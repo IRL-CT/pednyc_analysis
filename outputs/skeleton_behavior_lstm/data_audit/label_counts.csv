@@ -1,0 +1,17 @@
+label_field,label,count
+pedestrian_hand_gesture,No,133
+pedestrian_hand_gesture,Yes,30
+pedestrian_hand_gesture,Unknown,23
+annotated_pedestrian_speed_change,No change,95
+annotated_pedestrian_speed_change,Slowing down,43
+annotated_pedestrian_speed_change,Unknown,24
+annotated_pedestrian_speed_change,Not walking,16
+annotated_pedestrian_speed_change,Speeding up,8
+annotated_right_of_way,Pedestrian,73
+annotated_right_of_way,Both,70
+annotated_right_of_way,Unknown,19
+annotated_right_of_way,Driver,18
+annotated_right_of_way,Neither,6
+annotated_who_went_first,Driver,83
+annotated_who_went_first,Pedestrian,79
+annotated_who_went_first,Unknown,24

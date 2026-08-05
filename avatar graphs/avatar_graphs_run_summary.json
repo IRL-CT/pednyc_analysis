@@ -1,0 +1,23 @@
+{
+  "generated_at_utc": "2026-08-03T13:45:39.645749+00:00",
+  "data_root": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\data\\processed",
+  "output_root": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\avatar graphs",
+  "csv_files_found": 40,
+  "figures_produced": {
+    "PedNYC1": 14,
+    "PedNYC2": 13,
+    "PedNYC3": 13
+  },
+  "skipped_file_count": 0,
+  "skipped_files": [],
+  "verification": {
+    "all_discovered_files_reported": true,
+    "all_successful_figures_have_six_panels": true,
+    "all_successful_sample_counts_match": true,
+    "note": "Valid sample counts are rows where both the chosen time and source measurement are numeric; each plotted count must equal its corresponding valid sample count. Source measurement counts are also retained so missing time values remain auditable."
+  },
+  "unit_assumptions": {
+    "all_six_measurements": "raw units; no independent calibration metadata was found",
+    "project_context": "Existing project analysis treats Unity world position units as meters and some yaw fields as degrees, but that is not sufficient to assert calibrated units for all six requested raw fields."
+  }
+}

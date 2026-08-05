@@ -1,0 +1,7 @@
+scenario_id,total_recordings_found,valid_distance_measurements,mean_entry_event_distance_m,manual_review_candidates,neither_actor_entered,invalid_data,conflict_zone_availability
+3,26,26,11.66983107518096,3,0,0,geometrically_supported
+7,23,23,16.423509507121356,3,0,0,geometrically_supported
+12,26,0,,0,0,0,no_supported_conflict_zone
+15,28,25,11.712982280599839,3,3,0,geometrically_supported
+16,25,0,,0,0,0,no_supported_conflict_zone
+21,27,26,9.000552397763498,3,1,0,geometrically_supported

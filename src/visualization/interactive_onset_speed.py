@@ -29,6 +29,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCENARIOS = (3, 7, 12, 15, 16, 21)
 DEFAULT_INPUT = PROJECT_ROOT / "outputs/scenario_pattern_expanded/traces/aligned_speed_raw_traces.csv"
 DEFAULT_OUTPUT = PROJECT_ROOT / "outputs/interactive_speed_plots"
+DEFAULT_VEHICLE_OUTPUT = PROJECT_ROOT / "outputs/interactive_vehicle_speed_plots"
+DEFAULT_TRAJECTORY_INPUT = PROJECT_ROOT / "outputs/trajectory_analysis"
+DEFAULT_EVENT_INPUT = PROJECT_ROOT / "outputs/conflict_zone_analysis"
 GRID_SECONDS = 0.1
 SCENARIO_LABELS = {
     3: {
@@ -129,7 +132,7 @@ def _grid_for(traces: pd.DataFrame) -> np.ndarray:
 
 
 def calculate_summary(
-    traces: pd.DataFrame, coverage_fraction: float
+    traces: pd.DataFrame, coverage_fraction: float, speed_column: str = "pedestrian_speed"
 ) -> tuple[pd.DataFrame, ScenarioSummary]:
     """Calculate the static figure's pointwise median and IQR on a full grid."""
     if not 0 < coverage_fraction <= 1:
@@ -143,7 +146,7 @@ def calculate_summary(
         if len(one) < 2:
             continue
         x = one["aligned_time"].to_numpy()
-        y = one["pedestrian_speed"].to_numpy()
+        y = one[speed_column].to_numpy()
         curves.append(np.interp(grid, x, y, left=np.nan, right=np.nan))
         end_times.append(float(x[-1]))
     if not curves:
@@ -200,7 +203,9 @@ def _low_coverage_ranges(summary: pd.DataFrame) -> list[tuple[float, float]]:
 
 
 def build_figure(
-    traces: pd.DataFrame, summary: pd.DataFrame, metadata: ScenarioSummary
+    traces: pd.DataFrame, summary: pd.DataFrame, metadata: ScenarioSummary,
+    events: pd.DataFrame | None = None, speed_column: str = "pedestrian_speed",
+    actor: str = "pedestrian",
 ) -> go.Figure:
     try:
         label = SCENARIO_LABELS[metadata.scenario]
@@ -212,13 +217,18 @@ def build_figure(
     for identity, one in traces.groupby("recording_identifier", sort=True):
         one = one.sort_values("aligned_time")
         pednyc = int(one["pednyc_number"].iloc[0])
+        original = one["original_time"] if "original_time" in one else one["aligned_time"]
+        event_matches = events[events.recording_identifier.eq(identity)] if events is not None and not events.empty else pd.DataFrame()
+        zone_status = "potential/counterfactual" if len(event_matches) and event_matches.iloc[0].get("zone_event_status") == "potential_counterfactual" else "observed/actual"
         customdata = np.column_stack([
             np.repeat(f"PedNYC{pednyc}", len(one)),
             np.repeat(identity, len(one)),
+            original,
+            np.repeat(zone_status, len(one)),
         ])
         figure.add_trace(go.Scatter(
-            x=one["aligned_time"], y=one["pedestrian_speed"], mode="lines",
-            name=identity, legendgroup="participants", showlegend=False,
+            x=one["aligned_time"], y=one[speed_column], mode="lines",
+            name=identity, legendgroup=identity, showlegend=True,
             line={"color": "#4C78A8", "width": 1}, opacity=0.22,
             customdata=customdata,
             meta={
@@ -228,10 +238,57 @@ def build_figure(
             hovertemplate=(
                 "Participant: %{customdata[0]}<br>"
                 f"Scenario: {metadata.scenario}<br>"
-                "Seconds from movement onset: %{x:.2f}<br>"
-                "Smoothed pedestrian horizontal speed: %{y:.3f} m/s<extra></extra>"
+                "Aligned time: %{x:.2f} s<br>Original scenario time: %{customdata[2]:.2f} s<br>"
+                f"Smoothed {actor} ground-plane speed: %{{y:.3f}} m/s<br>Conflict-zone event: trace sample<br>Zone status: %{{customdata[3]}}<extra></extra>"
             ),
         ))
+        if events is not None and not events.empty:
+            matches = event_matches
+            if len(matches):
+                event = matches.iloc[0]
+                onset = float(original.iloc[0] - one.aligned_time.iloc[0])
+                potential = event.get("zone_event_status") == "potential_counterfactual"
+                if actor == "pedestrian":
+                    specs = [("Pedestrian zone entry", "pedestrian_entry_time", "triangle-right"), ("Pedestrian zone center / closest point", "pedestrian_center_time", "diamond"), ("Pedestrian zone exit", "pedestrian_exit_time", "x")]
+                    specs.append(("Vehicle arrival at zone", "counterfactual_vehicle_arrival_time" if potential else "vehicle_entry_time", "square"))
+                    entry, exit_time = event.get("pedestrian_entry_time"), event.get("pedestrian_exit_time")
+                    if np.isfinite(entry) and np.isfinite(exit_time):
+                        mask = original.between(entry, exit_time)
+                        if mask.any():
+                            figure.add_trace(go.Scatter(
+                                x=one.loc[mask, "aligned_time"],
+                                y=one.loc[mask, speed_column],
+                                mode="lines",
+                                fill="tozeroy",
+                                name=(
+                                    "Potential conflict-zone occupancy"
+                                    if potential else "Conflict-zone occupancy"
+                                ),
+                                legendgroup=identity,
+                                showlegend=False,
+                                line={"color": "rgba(0,0,0,0)", "width": 0},
+                                fillcolor=(
+                                    "rgba(148,103,189,.16)"
+                                    if potential else "rgba(90,90,90,.16)"
+                                ),
+                                hoverinfo="skip",
+                                meta={
+                                    "role": "zone_occupancy",
+                                    "participant_id": f"PedNYC{pednyc}",
+                                    "display": "shaded_conflict_zone",
+                                },
+                            ))
+                elif potential:
+                    specs = [("Counterfactual vehicle arrival", "counterfactual_vehicle_arrival_time", "diamond"), ("Pedestrian arrival at zone", "pedestrian_entry_time", "triangle-up")]
+                else:
+                    specs = [("Actual vehicle zone entry", "vehicle_actual_entry_time", "triangle-right"), ("Actual vehicle zone center / closest point", "vehicle_actual_center_time", "diamond"), ("Actual vehicle zone exit", "vehicle_actual_exit_time", "x"), ("Pedestrian arrival at zone", "pedestrian_entry_time", "triangle-up")]
+                for event_name, column, symbol in specs:
+                    event_time = event.get(column, np.nan)
+                    if not np.isfinite(event_time):
+                        continue
+                    index = int(np.argmin(np.abs(original.to_numpy() - event_time)))
+                    status = "counterfactual" if (potential and actor == "vehicle") else ("potential zone" if potential else "actual observed")
+                    figure.add_trace(go.Scatter(x=[one.aligned_time.iloc[index]], y=[one[speed_column].iloc[index]], mode="markers", name=event_name, legendgroup=identity, showlegend=False, marker={"size":8,"symbol":symbol,"color":"#9467BD" if potential else "#555555"}, customdata=[[f"PedNYC{pednyc}", metadata.scenario, event_time, event_name, status]], meta={"role":"zone_event_marker","participant_id":f"PedNYC{pednyc}","event_status":status}, hovertemplate="Participant: %{customdata[0]}<br>Scenario: %{customdata[1]}<br>Aligned time: %{x:.2f} s<br>Original scenario time: %{customdata[2]:.2f} s<br>Speed: %{y:.3f} m/s<br>Event: %{customdata[3]}<br>Status: %{customdata[4]}<extra></extra>"))
     figure.add_trace(go.Scatter(
         x=summary["aligned_time"], y=summary["q1_speed"], mode="lines",
         line={"width": 0}, hoverinfo="skip", showlegend=False,
@@ -278,11 +335,12 @@ def build_figure(
             "bgcolor": "rgba(255,255,255,.78)",
         })
     wrapped_main_title = label["main_title"].replace(" — ", " —<br>")
+    subtitle = label["subtitle"] if actor == "pedestrian" else f"Scenario {metadata.scenario} · Vehicle speed aligned to pedestrian movement onset"
     figure.update_layout(
         title={
             "text": (
                 f"<b>{wrapped_main_title}</b>"
-                f"<br><span style='font-size:14px'>{label['subtitle']}</span>"
+                f"<br><span style='font-size:14px'>{subtitle}</span>"
             ),
             "x": 0.5,
             "xanchor": "center",
@@ -293,7 +351,7 @@ def build_figure(
         template="plotly_white", hovermode="closest",
         height=760,
         xaxis={"title": "Seconds from pedestrian movement onset", "showgrid": True},
-        yaxis={"title": "Smoothed pedestrian horizontal speed (m/s)", "rangemode": "tozero"},
+        yaxis={"title": f"Smoothed {actor} ground-plane speed (m/s)", "rangemode": "tozero", "range": [0, 16] if actor == "vehicle" else None},
         yaxis2={
             "title": "Contributing recordings", "overlaying": "y", "side": "right",
             "range": [0, metadata.maximum_n * 1.15], "rangemode": "tozero",
@@ -369,10 +427,12 @@ CLICK_SCRIPT = r"""
 
 
 def export_scenario(
-    traces: pd.DataFrame, output_path: Path, coverage_fraction: float
+    traces: pd.DataFrame, output_path: Path, coverage_fraction: float,
+    events: pd.DataFrame | None = None, speed_column: str = "pedestrian_speed",
+    actor: str = "pedestrian",
 ) -> ScenarioSummary:
-    summary, metadata = calculate_summary(traces, coverage_fraction)
-    figure = build_figure(traces, summary, metadata)
+    summary, metadata = calculate_summary(traces, coverage_fraction, speed_column)
+    figure = build_figure(traces, summary, metadata, events, speed_column, actor)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     figure.write_html(
         output_path, include_plotlyjs=True, full_html=True, post_script=CLICK_SCRIPT,
@@ -381,21 +441,31 @@ def export_scenario(
     return metadata
 
 
+def load_trajectory_speed(input_root: Path, scenario: int) -> pd.DataFrame:
+    frame = pd.read_csv(input_root / f"scenario_{scenario:02d}" / "raw_trajectory_samples.csv")
+    return frame.rename(columns={"scenario":"scenario_number", "scenario_time":"original_time", "ped_speed":"pedestrian_speed", "veh_speed":"vehicle_speed"})
+
+
 def main() -> int:
     args = parse_args()
-    traces = load_traces(args.input.resolve(), args.scenarios)
     results = []
+    vehicle_results = []
     for scenario in args.scenarios:
-        one = traces[traces["scenario_number"] == scenario]
+        one = load_trajectory_speed(DEFAULT_TRAJECTORY_INPUT, scenario)
+        events = pd.read_csv(DEFAULT_EVENT_INPUT / f"scenario_{scenario:02d}" / "conflict_zone_events.csv")
         path = args.output_dir.resolve() / f"scenario_{scenario:02d}_onset_aligned.html"
-        metadata = export_scenario(one, path, args.coverage_threshold)
+        metadata = export_scenario(one, path, args.coverage_threshold, events)
         results.append({**metadata.__dict__, "output": str(path)})
+        vehicle_path = DEFAULT_VEHICLE_OUTPUT / f"scenario_{scenario:02d}_onset_aligned_vehicle_speed.html"
+        vehicle_metadata = export_scenario(one, vehicle_path, args.coverage_threshold, events, "vehicle_speed", "vehicle")
+        vehicle_results.append({**vehicle_metadata.__dict__, "output": str(vehicle_path)})
         print(
             f"Scenario {scenario}: maximum n={metadata.maximum_n}, "
             f"minimum summary n={metadata.minimum_summary_n} -> {path}"
         )
     manifest = args.output_dir.resolve() / "validation_summary.json"
     manifest.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
+    (DEFAULT_VEHICLE_OUTPUT / "validation_summary.json").write_text(json.dumps(vehicle_results, indent=2) + "\n", encoding="utf-8")
     return 0
 
 
