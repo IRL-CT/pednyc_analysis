@@ -36,6 +36,8 @@ POTENTIAL_ZONE_CONFIG = {
         "pedestrian_half_width_m": 0.75,
         "vehicle_half_width_m": 1.35,
         "grid_resolution_m": 0.05,
+        "uncertainty_zone_width_m": 4.5,
+        "uncertainty_zone_length_m": 5.0,
     },
     16: {
         "maneuver": "left_turn",
@@ -43,6 +45,8 @@ POTENTIAL_ZONE_CONFIG = {
         "pedestrian_half_width_m": 0.75,
         "vehicle_half_width_m": 1.35,
         "grid_resolution_m": 0.05,
+        "uncertainty_zone_width_m": 4.5,
+        "uncertainty_zone_length_m": 4.5,
     },
 }
 
@@ -130,13 +134,25 @@ def _potential_zone(traces: pd.DataFrame, scenario: int) -> dict[str, object]:
         raise ValueError(f"Scenario {scenario} potential corridor overlap is empty.")
     hull = overlap[ConvexHull(overlap).vertices]
     center = overlap.mean(axis=0)
+    width = float(cfg["uncertainty_zone_width_m"])
+    length = float(cfg["uncertainty_zone_length_m"])
+    rectangle = np.array([
+        [center[0] - width / 2, center[1] - length / 2],
+        [center[0] + width / 2, center[1] - length / 2],
+        [center[0] + width / 2, center[1] + length / 2],
+        [center[0] - width / 2, center[1] + length / 2],
+    ])
     return {
         "scenario": scenario, "description": scenario_description(scenario),
-        "shape": "corridor_intersection_polygon", "zone_type": "potential_counterfactual",
+        "shape": "rectangle", "zone_type": "potential_counterfactual",
         "center_x_m": float(center[0]), "center_z_m": float(center[1]),
-        "polygon_xz_m": hull.tolist(),
+        "polygon_xz_m": rectangle.tolist(),
+        "uncertainty_zone_width_m": width,
+        "uncertainty_zone_length_m": length,
+        "uncertainty_zone_area_m2": width * length,
+        "source_corridor_overlap_polygon_xz_m": hull.tolist(),
         "conflict_zone_method": "turn_uncertainty",
-        "method": "pedestrian_corridor_intersection_counterfactual_vehicle_corridor",
+        "method": "fixed_rectangle_centered_on_pedestrian_counterfactual_corridor_overlap",
         "geometrically_supported": True, "recording_count": int(traces.recording_identifier.nunique()),
         "scenario_fixed_geometry": True, "counterfactual_maneuver": cfg["maneuver"],
         "counterfactual_maneuver_label": cfg["maneuver_label"],
@@ -144,7 +160,7 @@ def _potential_zone(traces: pd.DataFrame, scenario: int) -> dict[str, object]:
         "vehicle_half_width_m": cfg["vehicle_half_width_m"], "grid_resolution_m": step,
         "representative_pedestrian_path_xz_m": ped_path.tolist(),
         "counterfactual_vehicle_path_xz_m": cf_path.tolist(),
-        "interpretation": "Potential overlap under an unresolved plausible vehicle maneuver; the observed vehicle did not enter this zone.",
+        "interpretation": "Fixed uncertainty-based interaction area centered on the overlap of the pedestrian and plausible counterfactual vehicle corridors; the observed vehicle did not enter this zone.",
     }
 
 
@@ -281,7 +297,10 @@ def zone_membership(x: np.ndarray, z: np.ndarray, zone: dict[str, object]) -> np
         return np.hypot(x - zone["center_x_m"], z - zone["center_z_m"]) <= zone["radius_m"]
     polygon = np.asarray(zone["polygon_xz_m"], dtype=float)
     from matplotlib.path import Path as MplPath
-    return MplPath(polygon, closed=True).contains_points(np.column_stack([x, z]), radius=1e-9)
+    closed_polygon = np.vstack([polygon, polygon[0]])
+    return MplPath(closed_polygon, closed=True).contains_points(
+        np.column_stack([x, z]), radius=1e-9
+    )
 
 
 def _closest_event_time(one: pd.DataFrame, actor: str, zone: dict[str, object], entry: float, exit_time: float) -> float:
@@ -509,15 +528,15 @@ def build_spatial_figure(
         zone_x, zone_z = polygon[:, 0], polygon[:, 1]
     figure.add_trace(go.Scatter(
         x=zone_x, y=zone_z, mode="lines", fill="toself",
-        name="Potential conflict zone" if zone.get("zone_type") == "potential_counterfactual" else "Observed-path conflict zone",
-        line={"color": "#9467BD", "width": 2, "dash": "dot" if zone.get("zone_type") == "potential_counterfactual" else "solid"},
-        fillcolor="rgba(148,103,189,.12)" if zone.get("zone_type") == "potential_counterfactual" else "rgba(148,103,189,.16)", meta={"role": "reference_geometry"},
+        name="Uncertainty-based conflict zone" if zone.get("zone_type") == "potential_counterfactual" else "Observed-path conflict zone",
+        line={"color": "#7A3E9D", "width": 3, "dash": "solid"},
+        fillcolor="rgba(148,103,189,.22)" if zone.get("zone_type") == "potential_counterfactual" else "rgba(148,103,189,.16)", meta={"role": "reference_geometry"},
     ))
     if zone.get("zone_type") == "potential_counterfactual":
         ped = np.asarray(zone["representative_pedestrian_path_xz_m"])
         cf = np.asarray(zone["counterfactual_vehicle_path_xz_m"])
         for path, width, name, color, dash in ((ped, zone["pedestrian_half_width_m"], "Representative pedestrian corridor", "#2A6FBB", "solid"), (cf, zone["vehicle_half_width_m"], "Counterfactual vehicle corridor", "#9467BD", "dash")):
-            figure.add_trace(go.Scatter(x=path[:,0], y=path[:,1], mode="lines", name=name, line={"color":color,"width":max(3, width*8),"dash":dash}, opacity=.18 if dash == "solid" else .25, hoverinfo="skip"))
+            figure.add_trace(go.Scatter(x=path[:,0], y=path[:,1], mode="lines", name=name, line={"color":color,"width":max(2, width*5),"dash":dash}, opacity=.11 if dash == "solid" else .16, hoverinfo="skip"))
         figure.add_trace(go.Scatter(x=cf[:,0], y=cf[:,1], mode="lines", name="Counterfactual vehicle trajectory", line={"color":"#6F42C1","width":3,"dash":"dash"}))
         for path, color in ((ped, "#2A6FBB"), (cf, "#6F42C1")):
             index = len(path) // 2

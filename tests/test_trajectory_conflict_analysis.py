@@ -1,10 +1,13 @@
 import math
+import json
 import unittest
 
 import numpy as np
 import pandas as pd
 
 from src.analysis.conflict_zone_analysis import (
+    POTENTIAL_ZONE_CONFIG,
+    build_spatial_figure,
     define_conflict_zone,
     get_conflict_zone_for_scenario,
     entry_order,
@@ -95,9 +98,39 @@ class ConflictAnalysisTests(unittest.TestCase):
             first = get_conflict_zone_for_scenario(scenario, traces)
             second = get_conflict_zone_for_scenario(scenario, traces)
             self.assertEqual(first["conflict_zone_method"], "turn_uncertainty")
-            self.assertEqual(first["shape"], "corridor_intersection_polygon")
+            self.assertEqual(first["shape"], "rectangle")
             self.assertGreaterEqual(len(first["polygon_xz_m"]), 3)
             np.testing.assert_allclose(first["polygon_xz_m"], second["polygon_xz_m"])
+            polygon = np.asarray(first["polygon_xz_m"])
+            width = float(polygon[:, 0].max() - polygon[:, 0].min())
+            length = float(polygon[:, 1].max() - polygon[:, 1].min())
+            area = .5 * abs(np.dot(polygon[:, 0], np.roll(polygon[:, 1], -1)) - np.dot(polygon[:, 1], np.roll(polygon[:, 0], -1)))
+            self.assertGreater(area, 0)
+            self.assertAlmostEqual(width, POTENTIAL_ZONE_CONFIG[scenario]["uncertainty_zone_width_m"])
+            self.assertAlmostEqual(length, POTENTIAL_ZONE_CONFIG[scenario]["uncertainty_zone_length_m"])
+
+    def test_spatial_plot_uses_exact_exported_uncertainty_polygon(self) -> None:
+        traces = self._scenario_traces(12)
+        zone = get_conflict_zone_for_scenario(12, traces)
+        exported_zone = json.loads(json.dumps(zone))
+        event = pd.DataFrame([{
+            "recording_identifier": "synthetic", "minimum_distance_time": 0.0,
+            "pedestrian_entry_time": np.nan, "pedestrian_exit_time": np.nan,
+            "vehicle_entry_time": np.nan, "vehicle_exit_time": np.nan,
+        }])
+        traces = traces.assign(participant_id="PedNYC1", scenario=12, aligned_time=traces.scenario_time,
+                               ped_speed=1.0, veh_speed=1.0)
+        figure = build_spatial_figure(traces, event, exported_zone)
+        plotted = np.column_stack([figure.data[0].x[:-1], figure.data[0].y[:-1]])
+        np.testing.assert_allclose(plotted, exported_zone["polygon_xz_m"])
+        self.assertEqual(figure.data[0].name, "Uncertainty-based conflict zone")
+
+    def test_expanded_polygon_controls_entry_and_exit_for_multiple_recordings(self) -> None:
+        zone = {"shape": "rectangle", "polygon_xz_m": [[-2, -2], [2, -2], [2, 2], [-2, 2]]}
+        first = occupancy_interval(np.arange(5.0), np.array([-3, -1, 0, 1, 3]), np.zeros(5), zone)
+        second = occupancy_interval(np.arange(5.0), np.array([3, 1, 0, -1, -3]), np.ones(5), zone)
+        self.assertEqual(first, (1.0, 3.0))
+        self.assertEqual(second, (1.0, 3.0))
 
     def test_existing_intersection_scenario_retains_geometric_method(self) -> None:
         zone = get_conflict_zone_for_scenario(3, self._scenario_traces(3))

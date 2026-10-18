@@ -1,0 +1,19 @@
+{
+  "authoritative_source": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis\\data\\processed\\pednyc1\\scenario3\\decoded_clean_PedNYC1_scenario3.csv",
+  "authoritative_sha256": "2FB6329BA8E2223D1367325CD32C1C9502EB98930224A3C877E63CE05F84E251",
+  "time_origin_seconds": 0.0,
+  "duration_seconds": 31.00293,
+  "rows": 648,
+  "macro_micro_regenerated": true,
+  "existing_outputs_modified": false,
+  "signal_available": true,
+  "video_kind": "authoritative VR trajectory animation",
+  "pedestrian_zone_event": [
+    15.366455,
+    18.316406
+  ],
+  "driver_zone_event": [
+    23.032715,
+    23.845947
+  ]
+}

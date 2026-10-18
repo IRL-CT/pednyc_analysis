@@ -1,11 +1,32 @@
 {
   "scenario": 16,
   "description": "Parallel/contra-directional approach \u2014 pedestrian far from vehicle lane, opposite side",
-  "shape": "corridor_intersection_polygon",
+  "shape": "rectangle",
   "zone_type": "potential_counterfactual",
   "center_x_m": 10.384170375836831,
   "center_z_m": 55.813865928894636,
   "polygon_xz_m": [
+    [
+      8.134170375836831,
+      53.563865928894636
+    ],
+    [
+      12.634170375836831,
+      53.563865928894636
+    ],
+    [
+      12.634170375836831,
+      58.063865928894636
+    ],
+    [
+      8.134170375836831,
+      58.063865928894636
+    ]
+  ],
+  "uncertainty_zone_width_m": 4.5,
+  "uncertainty_zone_length_m": 4.5,
+  "uncertainty_zone_area_m2": 20.25,
+  "source_corridor_overlap_polygon_xz_m": [
     [
       10.765064453285532,
       54.382943377642114
@@ -72,7 +93,7 @@
     ]
   ],
   "conflict_zone_method": "turn_uncertainty",
-  "method": "pedestrian_corridor_intersection_counterfactual_vehicle_corridor",
+  "method": "fixed_rectangle_centered_on_pedestrian_counterfactual_corridor_overlap",
   "geometrically_supported": true,
   "recording_count": 25,
   "scenario_fixed_geometry": true,
@@ -1797,5 +1818,5 @@
       55.72702670368977
     ]
   ],
-  "interpretation": "Potential overlap under an unresolved plausible vehicle maneuver; the observed vehicle did not enter this zone."
+  "interpretation": "Fixed uncertainty-based interaction area centered on the overlap of the pedestrian and plausible counterfactual vehicle corridors; the observed vehicle did not enter this zone."
 }

@@ -1,0 +1,40 @@
+{
+  "generated_at_utc": "2026-08-05T16:41:11.224088+00:00",
+  "seed": 42,
+  "bootstrap_repetitions": 50,
+  "scenarios": [
+    3,
+    7,
+    12,
+    15,
+    16,
+    21
+  ],
+  "input_root": "C:\\Users\\patl5\\OneDrive\\Desktop\\BURE\\pednyc_analysis",
+  "ground_truth": "C:\\Users\\patl5\\Downloads\\XCPedestrian-GroundTruth-RERUN.xlsx",
+  "coordinate_source": "B VR Pos X/Z via validated trajectory pipeline",
+  "path_points": 50,
+  "event_window_seconds": [
+    -3,
+    5
+  ],
+  "conflict_zone_methods": {
+    "3": "robust_median_of_recording_level_path_conflict_points",
+    "7": "robust_median_of_recording_level_path_conflict_points",
+    "12": "turn_uncertainty",
+    "15": "robust_median_of_recording_level_path_conflict_points",
+    "16": "turn_uncertainty",
+    "21": "robust_median_of_recording_level_path_conflict_points"
+  },
+  "valid_trials_by_scenario": {
+    "3": 26,
+    "7": 23,
+    "12": 25,
+    "15": 26,
+    "16": 24,
+    "21": 25
+  },
+  "excluded_rows": 11,
+  "pooled_cramers_v_scenario": 0.0,
+  "package_note": "No additional dependencies installed."
+}

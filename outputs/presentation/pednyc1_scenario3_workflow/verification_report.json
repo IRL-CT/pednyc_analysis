@@ -1,0 +1,17 @@
+{
+  "time_origin_seconds": 0.0,
+  "duration_seconds": 26.343018,
+  "rows": 566,
+  "macro_boundaries_unchanged": true,
+  "analytical_csvs_modified": false,
+  "signal_available": false,
+  "video_kind": "canonical VR trajectory animation",
+  "pedestrian_zone_event": [
+    19.696533,
+    22.868896
+  ],
+  "driver_zone_event": [
+    16.41333,
+    17.056152
+  ]
+}

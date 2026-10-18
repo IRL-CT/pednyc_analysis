@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+import re
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -18,6 +19,15 @@ def parse_args():
     parser.add_argument("--output-dir", type=Path, default=ROOT / "outputs" / "graphs" / "macro_segmentation")
     parser.add_argument("--segments-csv", type=Path)
     parser.add_argument("--plot-path", type=Path)
+    parser.add_argument(
+        "--conflict-events-csv",
+        type=Path,
+        help="Conflict-zone event table; when supplied, actor occupancy is overlaid on the plot.",
+    )
+    parser.add_argument(
+        "--recording-identifier",
+        help="Row to use from the conflict event table (for example, PedNYC1_scenario3).",
+    )
     return parser.parse_args()
 
 
@@ -31,6 +41,51 @@ SEGMENTS_CSV = ARGS.segments_csv or (OUTPUT_DIR / "macro_segments_PedNYC1_scenar
 PLOT_PATH = ARGS.plot_path or (OUTPUT_DIR / "macro_segments_PedNYC1_scenario3_v2.png")
 SEGMENTS_CSV.parent.mkdir(parents=True, exist_ok=True)
 PLOT_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+
+def infer_recording_identifier(input_csv):
+    """Infer the canonical recording ID from a scenario feature filename."""
+    match = re.search(r"(PedNYC\d+_scenario\d+)", Path(input_csv).stem, flags=re.IGNORECASE)
+    return match.group(1) if match else None
+
+
+def infer_conflict_events_path(input_csv):
+    """Locate the scenario-level event table associated with a feature file."""
+    identifier = infer_recording_identifier(input_csv)
+    match = re.search(r"scenario(\d+)", identifier or "", flags=re.IGNORECASE)
+    if not match:
+        return None
+    return ROOT / "outputs" / "conflict_zone_analysis" / f"scenario_{int(match.group(1)):02d}" / "conflict_zone_events.csv"
+
+
+def load_conflict_zone_occupancy(events_csv, recording_identifier):
+    """Return valid pedestrian/vehicle conflict-zone occupancy intervals."""
+    if events_csv is None or recording_identifier is None or not Path(events_csv).is_file():
+        return []
+
+    events = pd.read_csv(events_csv)
+    if "recording_identifier" not in events.columns:
+        return []
+    selected = events.loc[
+        events["recording_identifier"].astype(str).str.casefold()
+        == str(recording_identifier).casefold()
+    ]
+    if selected.empty:
+        return []
+
+    row = selected.iloc[0]
+    intervals = []
+    for actor, start_col, end_col in (
+        ("Pedestrian", "pedestrian_entry_time", "pedestrian_exit_time"),
+        ("Vehicle", "vehicle_actual_entry_time", "vehicle_actual_exit_time"),
+    ):
+        if start_col not in row.index or end_col not in row.index:
+            continue
+        start = pd.to_numeric(row[start_col], errors="coerce")
+        end = pd.to_numeric(row[end_col], errors="coerce")
+        if np.isfinite(start) and np.isfinite(end) and end >= start:
+            intervals.append((actor, float(start), float(end)))
+    return intervals
 
 
 # ============================================================
@@ -478,7 +533,7 @@ def segment_stats(df, start_idx, end_idx, time_sec, speed_trend):
 # Plot
 # ============================================================
 
-def plot_segments(time_sec, speed_raw, speed_trend, boundaries, labels):
+def plot_segments(time_sec, speed_raw, speed_trend, boundaries, labels, conflict_occupancy=None):
     color_map = {
         "pre_movement_low_motion": "#f4cccc",
         "acceleration": "#d9ead3",
@@ -518,6 +573,24 @@ def plot_segments(time_sec, speed_raw, speed_trend, boundaries, labels):
             ha="center",
             va="top",
             fontsize=10
+        )
+
+    conflict_styles = {
+        "Pedestrian": {"color": "#7b3294", "hatch": "///"},
+        "Vehicle": {"color": "#008837", "hatch": "\\\\\\"},
+    }
+    for actor, start, end in conflict_occupancy or []:
+        style = conflict_styles[actor]
+        ax.axvspan(
+            start,
+            end,
+            facecolor=style["color"],
+            edgecolor=style["color"],
+            alpha=0.16,
+            hatch=style["hatch"],
+            linewidth=1.5,
+            label=f"{actor} in conflict zone",
+            zorder=2,
         )
 
     ax.plot(
@@ -603,6 +676,10 @@ def main():
     )
 
     labels = assign_labels(boundaries, df)
+    conflict_occupancy = load_conflict_zone_occupancy(
+        ARGS.conflict_events_csv or infer_conflict_events_path(INPUT_CSV),
+        ARGS.recording_identifier or infer_recording_identifier(INPUT_CSV),
+    )
 
     rows = []
 
@@ -634,7 +711,8 @@ def main():
         speed_raw=speed_raw,
         speed_trend=speed_trend,
         boundaries=boundaries,
-        labels=labels
+        labels=labels,
+        conflict_occupancy=conflict_occupancy,
     )
 
     print("\nDone.")
@@ -643,6 +721,10 @@ def main():
 
     print(f"\nSaved macro segment CSV to:\n  {SEGMENTS_CSV}")
     print(f"Saved macro segmentation plot to:\n  {PLOT_PATH}")
+    if conflict_occupancy:
+        print("Conflict-zone occupancy overlaid:")
+        for actor, start, end in conflict_occupancy:
+            print(f"  {actor}: {start:.3f}-{end:.3f} seconds")
 
     print("\nMacro segments:")
     print(

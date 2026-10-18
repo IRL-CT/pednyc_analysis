@@ -1,0 +1,13 @@
+scenario,analysis_type,ari_with_who_went_first
+3,conflict_response_clusters,0.17422867513611615
+3,path_shape_clusters,0.8460153510849995
+7,conflict_response_clusters,0.1919969941762164
+7,path_shape_clusters,0.8104158860996628
+12,conflict_response_clusters,0.2584213172448467
+12,path_shape_clusters,-0.14192495921696574
+15,conflict_response_clusters,0.2874131564123427
+15,path_shape_clusters,0.4858527434735032
+16,conflict_response_clusters,0.10933940774487472
+16,path_shape_clusters,1.0
+21,conflict_response_clusters,0.48231511254019294
+21,path_shape_clusters,0.8174023499523658

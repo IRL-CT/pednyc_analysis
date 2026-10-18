@@ -1,0 +1,134 @@
+analysis_type,ground_truth_label,cluster_id,category,count,within_cluster_percent
+conflict_response_clusters,driver_signal,0,No,34,44.15584415584416
+conflict_response_clusters,driver_signal,0,Yes,43,55.84415584415584
+conflict_response_clusters,driver_signal,1,No,23,38.333333333333336
+conflict_response_clusters,driver_signal,1,Yes,37,61.66666666666667
+conflict_response_clusters,driver_signal,2,No,1,12.5
+conflict_response_clusters,driver_signal,2,Yes,7,87.5
+conflict_response_clusters,annotated_vehicle_speed_change,0,No change,11,14.285714285714285
+conflict_response_clusters,annotated_vehicle_speed_change,0,Not moving,9,11.688311688311687
+conflict_response_clusters,annotated_vehicle_speed_change,0,Slowing down,54,70.12987012987013
+conflict_response_clusters,annotated_vehicle_speed_change,0,Speeding up,3,3.896103896103896
+conflict_response_clusters,annotated_vehicle_speed_change,1,No change,20,33.33333333333333
+conflict_response_clusters,annotated_vehicle_speed_change,1,Not moving,3,5.0
+conflict_response_clusters,annotated_vehicle_speed_change,1,Slowing down,37,61.66666666666667
+conflict_response_clusters,annotated_vehicle_speed_change,1,Speeding up,0,0.0
+conflict_response_clusters,annotated_vehicle_speed_change,2,No change,3,37.5
+conflict_response_clusters,annotated_vehicle_speed_change,2,Not moving,0,0.0
+conflict_response_clusters,annotated_vehicle_speed_change,2,Slowing down,5,62.5
+conflict_response_clusters,annotated_vehicle_speed_change,2,Speeding up,0,0.0
+conflict_response_clusters,annotated_pedestrian_speed_change,0,No change,45,58.44155844155844
+conflict_response_clusters,annotated_pedestrian_speed_change,0,Not walking,5,6.493506493506493
+conflict_response_clusters,annotated_pedestrian_speed_change,0,Slowing down,20,25.97402597402597
+conflict_response_clusters,annotated_pedestrian_speed_change,0,Speeding up,7,9.090909090909092
+conflict_response_clusters,annotated_pedestrian_speed_change,1,No change,35,58.333333333333336
+conflict_response_clusters,annotated_pedestrian_speed_change,1,Not walking,7,11.666666666666666
+conflict_response_clusters,annotated_pedestrian_speed_change,1,Slowing down,17,28.333333333333332
+conflict_response_clusters,annotated_pedestrian_speed_change,1,Speeding up,1,1.6666666666666667
+conflict_response_clusters,annotated_pedestrian_speed_change,2,No change,4,50.0
+conflict_response_clusters,annotated_pedestrian_speed_change,2,Not walking,3,37.5
+conflict_response_clusters,annotated_pedestrian_speed_change,2,Slowing down,1,12.5
+conflict_response_clusters,annotated_pedestrian_speed_change,2,Speeding up,0,0.0
+conflict_response_clusters,annotated_right_of_way,0,Both,18,23.376623376623375
+conflict_response_clusters,annotated_right_of_way,0,Driver,15,19.480519480519483
+conflict_response_clusters,annotated_right_of_way,0,Neither,3,3.896103896103896
+conflict_response_clusters,annotated_right_of_way,0,Pedestrian,41,53.246753246753244
+conflict_response_clusters,annotated_right_of_way,1,Both,33,55.00000000000001
+conflict_response_clusters,annotated_right_of_way,1,Driver,3,5.0
+conflict_response_clusters,annotated_right_of_way,1,Neither,1,1.6666666666666667
+conflict_response_clusters,annotated_right_of_way,1,Pedestrian,23,38.333333333333336
+conflict_response_clusters,annotated_right_of_way,2,Both,8,100.0
+conflict_response_clusters,annotated_right_of_way,2,Driver,0,0.0
+conflict_response_clusters,annotated_right_of_way,2,Neither,0,0.0
+conflict_response_clusters,annotated_right_of_way,2,Pedestrian,0,0.0
+conflict_response_clusters,annotated_who_went_first,0,Driver,27,35.064935064935064
+conflict_response_clusters,annotated_who_went_first,0,Pedestrian,49,63.63636363636363
+conflict_response_clusters,annotated_who_went_first,0,Unknown,1,1.2987012987012987
+conflict_response_clusters,annotated_who_went_first,1,Driver,40,66.66666666666666
+conflict_response_clusters,annotated_who_went_first,1,Pedestrian,20,33.33333333333333
+conflict_response_clusters,annotated_who_went_first,1,Unknown,0,0.0
+conflict_response_clusters,annotated_who_went_first,2,Driver,8,100.0
+conflict_response_clusters,annotated_who_went_first,2,Pedestrian,0,0.0
+conflict_response_clusters,annotated_who_went_first,2,Unknown,0,0.0
+conflict_response_clusters,pedestrian_hand_gesture,0,No,59,76.62337662337663
+conflict_response_clusters,pedestrian_hand_gesture,0,Yes,18,23.376623376623375
+conflict_response_clusters,pedestrian_hand_gesture,1,No,51,85.0
+conflict_response_clusters,pedestrian_hand_gesture,1,Yes,9,15.0
+conflict_response_clusters,pedestrian_hand_gesture,2,No,8,100.0
+conflict_response_clusters,pedestrian_hand_gesture,2,Yes,0,0.0
+path_shape_clusters,driver_signal,0,No,28,50.90909090909091
+path_shape_clusters,driver_signal,0,Yes,27,49.09090909090909
+path_shape_clusters,driver_signal,1,No,9,25.71428571428571
+path_shape_clusters,driver_signal,1,Yes,26,74.28571428571429
+path_shape_clusters,driver_signal,2,No,20,37.735849056603776
+path_shape_clusters,driver_signal,2,Yes,33,62.264150943396224
+path_shape_clusters,driver_signal,3,No,1,50.0
+path_shape_clusters,driver_signal,3,Yes,1,50.0
+path_shape_clusters,annotated_vehicle_speed_change,0,No change,21,38.18181818181819
+path_shape_clusters,annotated_vehicle_speed_change,0,Not moving,1,1.8181818181818181
+path_shape_clusters,annotated_vehicle_speed_change,0,Slowing down,32,58.18181818181818
+path_shape_clusters,annotated_vehicle_speed_change,0,Speeding up,1,1.8181818181818181
+path_shape_clusters,annotated_vehicle_speed_change,1,No change,7,20.0
+path_shape_clusters,annotated_vehicle_speed_change,1,Not moving,1,2.857142857142857
+path_shape_clusters,annotated_vehicle_speed_change,1,Slowing down,26,74.28571428571429
+path_shape_clusters,annotated_vehicle_speed_change,1,Speeding up,1,2.857142857142857
+path_shape_clusters,annotated_vehicle_speed_change,2,No change,6,11.320754716981133
+path_shape_clusters,annotated_vehicle_speed_change,2,Not moving,10,18.867924528301888
+path_shape_clusters,annotated_vehicle_speed_change,2,Slowing down,37,69.81132075471697
+path_shape_clusters,annotated_vehicle_speed_change,2,Speeding up,0,0.0
+path_shape_clusters,annotated_vehicle_speed_change,3,No change,0,0.0
+path_shape_clusters,annotated_vehicle_speed_change,3,Not moving,0,0.0
+path_shape_clusters,annotated_vehicle_speed_change,3,Slowing down,1,50.0
+path_shape_clusters,annotated_vehicle_speed_change,3,Speeding up,1,50.0
+path_shape_clusters,annotated_pedestrian_speed_change,0,No change,25,45.45454545454545
+path_shape_clusters,annotated_pedestrian_speed_change,0,Not walking,10,18.181818181818183
+path_shape_clusters,annotated_pedestrian_speed_change,0,Slowing down,14,25.454545454545453
+path_shape_clusters,annotated_pedestrian_speed_change,0,Speeding up,6,10.909090909090908
+path_shape_clusters,annotated_pedestrian_speed_change,1,No change,25,71.42857142857143
+path_shape_clusters,annotated_pedestrian_speed_change,1,Not walking,1,2.857142857142857
+path_shape_clusters,annotated_pedestrian_speed_change,1,Slowing down,9,25.71428571428571
+path_shape_clusters,annotated_pedestrian_speed_change,1,Speeding up,0,0.0
+path_shape_clusters,annotated_pedestrian_speed_change,2,No change,33,62.264150943396224
+path_shape_clusters,annotated_pedestrian_speed_change,2,Not walking,4,7.547169811320755
+path_shape_clusters,annotated_pedestrian_speed_change,2,Slowing down,14,26.41509433962264
+path_shape_clusters,annotated_pedestrian_speed_change,2,Speeding up,2,3.7735849056603774
+path_shape_clusters,annotated_pedestrian_speed_change,3,No change,1,50.0
+path_shape_clusters,annotated_pedestrian_speed_change,3,Not walking,0,0.0
+path_shape_clusters,annotated_pedestrian_speed_change,3,Slowing down,1,50.0
+path_shape_clusters,annotated_pedestrian_speed_change,3,Speeding up,0,0.0
+path_shape_clusters,annotated_right_of_way,0,Both,32,58.18181818181818
+path_shape_clusters,annotated_right_of_way,0,Driver,5,9.090909090909092
+path_shape_clusters,annotated_right_of_way,0,Neither,0,0.0
+path_shape_clusters,annotated_right_of_way,0,Pedestrian,18,32.72727272727273
+path_shape_clusters,annotated_right_of_way,1,Both,22,62.857142857142854
+path_shape_clusters,annotated_right_of_way,1,Driver,11,31.428571428571427
+path_shape_clusters,annotated_right_of_way,1,Neither,0,0.0
+path_shape_clusters,annotated_right_of_way,1,Pedestrian,2,5.714285714285714
+path_shape_clusters,annotated_right_of_way,2,Both,5,9.433962264150944
+path_shape_clusters,annotated_right_of_way,2,Driver,1,1.8867924528301887
+path_shape_clusters,annotated_right_of_way,2,Neither,4,7.547169811320755
+path_shape_clusters,annotated_right_of_way,2,Pedestrian,43,81.13207547169812
+path_shape_clusters,annotated_right_of_way,3,Both,0,0.0
+path_shape_clusters,annotated_right_of_way,3,Driver,1,50.0
+path_shape_clusters,annotated_right_of_way,3,Neither,0,0.0
+path_shape_clusters,annotated_right_of_way,3,Pedestrian,1,50.0
+path_shape_clusters,annotated_who_went_first,0,Driver,39,70.9090909090909
+path_shape_clusters,annotated_who_went_first,0,Pedestrian,16,29.09090909090909
+path_shape_clusters,annotated_who_went_first,0,Unknown,0,0.0
+path_shape_clusters,annotated_who_went_first,1,Driver,28,80.0
+path_shape_clusters,annotated_who_went_first,1,Pedestrian,7,20.0
+path_shape_clusters,annotated_who_went_first,1,Unknown,0,0.0
+path_shape_clusters,annotated_who_went_first,2,Driver,7,13.20754716981132
+path_shape_clusters,annotated_who_went_first,2,Pedestrian,45,84.90566037735849
+path_shape_clusters,annotated_who_went_first,2,Unknown,1,1.8867924528301887
+path_shape_clusters,annotated_who_went_first,3,Driver,1,50.0
+path_shape_clusters,annotated_who_went_first,3,Pedestrian,1,50.0
+path_shape_clusters,annotated_who_went_first,3,Unknown,0,0.0
+path_shape_clusters,pedestrian_hand_gesture,0,No,43,78.18181818181819
+path_shape_clusters,pedestrian_hand_gesture,0,Yes,12,21.818181818181817
+path_shape_clusters,pedestrian_hand_gesture,1,No,31,88.57142857142857
+path_shape_clusters,pedestrian_hand_gesture,1,Yes,4,11.428571428571429
+path_shape_clusters,pedestrian_hand_gesture,2,No,42,79.24528301886792
+path_shape_clusters,pedestrian_hand_gesture,2,Yes,11,20.754716981132077
+path_shape_clusters,pedestrian_hand_gesture,3,No,2,100.0
+path_shape_clusters,pedestrian_hand_gesture,3,Yes,0,0.0

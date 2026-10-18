@@ -1,0 +1,15 @@
+﻿Display label,Actor,Input features,Exact rule or threshold,Observed versus inferred status
+Pedestrian speed,Pedestrian,B VR Pos X/Z; ScenarioTime,planar displacement/delta-t; centered 9-sample mean,Observed
+Pedestrian acceleration,Pedestrian,smoothed pedestrian speed; ScenarioTime,delta-speed/delta-t; centered 11-sample mean,Observed
+Head movement,Pedestrian,head-turn rate; head/body yaw difference,micro v6 head thresholds,Observed
+Left hand above shoulder,Pedestrian,left-hand Y; left-shoulder Y,hand Y > shoulder Y; raw; no minimum duration,Observed candidate
+Right hand above shoulder,Pedestrian,right-hand Y; right-shoulder Y,hand Y > shoulder Y; raw; no minimum duration,Observed candidate
+Driver nearby,Interaction,smoothed planar distance,distance < 12.0 m,Observed
+Pedestrian inside conflict zone,Pedestrian,B VR Pos X/Z; existing circle,distance to center <= 2.0 m,Observed
+Driver inside conflict zone,Driver,A car Pos X/Z; existing circle,distance to center <= 2.0 m,Observed
+Driver speeding up,Driver,smoothed driver acceleration,acceleration >= +0.35 m/s2,Observed
+Driver slowing down,Driver,smoothed driver acceleration,acceleration <= -0.25 m/s2,Observed
+Driver steady speed,Driver,driver speed and acceleration,-0.25 < acceleration < +0.35 m/s2 and speed >=0.15 m/s,Observed
+Speed dip with recovery,Interaction,micro speed drop/recovery,>0.18 m/s and >22% drop; recovery >=35%; duration <=1.5 s; mean speed >0.25 m/s,Inferred
+Possible yielding,Interaction,distance + pedestrian motion,"distance <12 m AND slowing, pausing, or speed dip with recovery",Inferred; not intent
+Driver signaling,Driver,A indicators,False/False=No; True/False=Left; False/True=Right,Observed

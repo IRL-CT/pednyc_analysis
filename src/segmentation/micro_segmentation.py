@@ -143,6 +143,26 @@ TAG_COLORS = {
     "conflicted": "#B6992D",
     "neutral": "#D0D0D0",
 }
+
+# Display-only vocabulary for the slide-ready Gantt. Analytical tags and CSVs
+# continue to use the original labels above.
+PRESENTATION_ROWS = {
+    "Observed Motion": [
+        ("motion", "near_stationary", "Low movement", "#3B82F6"),
+        ("motion", "pausing", "Pause", "#60A5FA"),
+        ("motion", "speed_increasing", "Speeding up", "#16A34A"),
+        ("motion", "speed_decreasing", "Slowing down", "#2563EB"),
+        ("motion", "speed_steady", "Steady speed", "#14B8A6"),
+        ("motion", "fluctuating", "Variable speed", "#0F766E"),
+        ("head", "head_active", "Head movement", "#22C55E"),
+        ("head", "head_still", "Low head movement", "#6EE7B7"),
+    ],
+    "Possible Behaviors": [
+        ("motion", "hesitating", "Possible hesitation", "#F97316"),
+        ("car_context", "yielding", "Possible yielding", "#9333EA"),
+    ],
+}
+PRESENTATION_FOOTNOTE = "Possible behaviors are rule-based interpretations of measured motion and proximity."
 NEAR_STATIONARY_SPEED = 0.15
 WALKING_MEAN_SPEED = 0.25
 SPEED_SLOPE_MIN = 0.12
@@ -983,6 +1003,52 @@ def draw_separated_gantt(ax, segments_df):
     return y_lookup
 
 
+def presentation_gantt_rows(segments_df):
+    """Return compact display rows, omitting unused analytical tags."""
+    columns = {"motion": "motion_tag", "head": "head_tag", "car_context": "car_tag"}
+    lookup, positions, labels, blocks, colors = {}, [], [], [], {}
+    y = 0.0
+    for section, candidates in PRESENTATION_ROWS.items():
+        rows = [row for row in candidates if row[1] in set(segments_df[columns[row[0]]].astype(str).str.strip())]
+        if not rows:
+            continue
+        start = y
+        for dimension, tag, display_label, color in rows:
+            lookup[(dimension, tag)] = y
+            positions.append(y)
+            labels.append(display_label)
+            colors[tag] = color
+            y += 1.0
+        blocks.append((section, start, y - 1.0))
+        y += 0.65
+    return lookup, positions, labels, blocks, colors
+
+
+def draw_presentation_gantt(ax, segments_df):
+    lookup, positions, labels, blocks, colors = presentation_gantt_rows(segments_df)
+    for index, (section, start, end) in enumerate(blocks):
+        background = "#EFF6FF" if section == "Observed Motion" else "#FFF7ED"
+        ax.axhspan(start - 0.48, end + 0.48, color=background, alpha=0.72, zorder=-2)
+        if index:
+            ax.axhline(start - 0.33, color="#64748B", linewidth=1.2, alpha=0.8)
+        ax.text(
+            0.008, (start + end) / 2.0, section, transform=ax.get_yaxis_transform(),
+            ha="left", va="center", fontsize=12, fontweight="bold", color="#334155",
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.88, "pad": 2.5},
+        )
+    columns = {"motion": "motion_tag", "head": "head_tag", "car_context": "car_tag"}
+    for _, row in segments_df.iterrows():
+        for dimension, column in columns.items():
+            tag = str(row[column]).strip()
+            y = lookup.get((dimension, tag))
+            if y is not None:
+                ax.barh(y, row["duration_sec"], left=row["start_time_sec"], height=0.58,
+                        color=colors[tag], edgecolor="white", linewidth=0.8)
+    ax.set_yticks(positions)
+    ax.set_yticklabels(labels, fontsize=12)
+    return positions
+
+
 def tag_legend_handles(Patch):
     handles = []
     for tags in TAG_DIMENSIONS.values():
@@ -1065,19 +1131,19 @@ def plot_stacked_comparison(frame_df, macro_df, segments_df, boundary_df, output
 
 
 def build_gantt_figure(plt, Patch, segments_df, macro_df):
-    _, y_positions, _, _ = separated_gantt_rows()
-    fig, ax = plt.subplots(figsize=(22, max(8, 0.55 * len(y_positions) + 3)))
+    _, y_positions, _, _, _ = presentation_gantt_rows(segments_df)
+    fig, ax = plt.subplots(figsize=(20, max(7, 0.62 * len(y_positions) + 2.4)))
     shade_macro_segments(ax, macro_df, label_top=True)
-    draw_separated_gantt(ax, segments_df)
+    draw_presentation_gantt(ax, segments_df)
     ax.invert_yaxis()
-    ax.set_xlabel("Scenario elapsed time, seconds")
-    ax.set_ylabel("Tag row")
-    ax.set_title("Observable Kinematics and Inferred Latent Behaviors")
+    ax.set_xlabel("Scenario elapsed time, seconds", fontsize=13)
+    ax.set_ylabel("")
+    ax.set_title("Observed Motion and Possible Behaviors", fontsize=18, fontweight="bold", pad=14)
+    ax.tick_params(axis="x", labelsize=11)
     ax.grid(True, axis="x", alpha=0.25)
     ax.set_xlim(*scenario_time_limits(macro_df))
-    handles = tag_legend_handles(Patch)
-    ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.18), ncol=4, fontsize=8, frameon=False)
-    fig.tight_layout(rect=[0, 0.08, 1, 1])
+    fig.text(0.5, 0.018, PRESENTATION_FOOTNOTE, ha="center", va="bottom", fontsize=10.5, color="#475569")
+    fig.tight_layout(rect=[0, 0.055, 1, 1])
     return fig, ax
 
 

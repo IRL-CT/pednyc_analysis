@@ -1,0 +1,4 @@
+k,silhouette,bootstrap_ari_mean,bootstrap_ari_p10,minimum_cluster_size,cluster_sizes,feature_removal_ari_min,accepted,scenario,analysis_type
+2,0.6609957194399445,0.8583504037615672,0.3824091778202677,3,22;3,,True,12,path_shape_clusters
+3,0.5938824695297843,1.0,1.0,3,3;18;4,,True,12,path_shape_clusters
+4,0.5790028088089201,0.8908690765748323,0.7308171549290937,1,18;2;4;1,,False,12,path_shape_clusters

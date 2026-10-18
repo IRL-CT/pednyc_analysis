@@ -352,6 +352,11 @@ class ScenarioRunner:
             "--output-dir", str(p.macro_dir),
             "--segments-csv", str(p.macro_csv),
             "--plot-path", str(p.macro_png),
+            "--conflict-events-csv", str(
+                p.project_root / "outputs" / "conflict_zone_analysis"
+                / f"scenario_{p.scenario_number:02d}" / "conflict_zone_events.csv"
+            ),
+            "--recording-identifier", p.scenario_stem,
         ])
 
     def run_micro_segmentation(self) -> None:

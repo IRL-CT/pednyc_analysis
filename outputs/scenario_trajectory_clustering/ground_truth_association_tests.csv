@@ -1,0 +1,13 @@
+analysis_type,ground_truth_label,test,statistic,p_value,cramers_v,adjusted_rand_index,normalized_mutual_information,valid_rows
+conflict_response_clusters,driver_signal,chi-square (sparse expected counts; interpret cautiously),3.1443903318903326,0.2075889895503014,0.08860633773152352,-0.014029637928400469,0.0160672607429153,145
+conflict_response_clusters,annotated_vehicle_speed_change,chi-square (sparse expected counts; interpret cautiously),11.486137968444952,0.07446461848463426,0.13797993352570148,0.018621169793695415,0.052324409971189076,145
+conflict_response_clusters,annotated_pedestrian_speed_change,chi-square (sparse expected counts; interpret cautiously),11.514793680630149,0.0737108655443466,0.13834256968114358,0.00636317020129693,0.03680788960334142,145
+conflict_response_clusters,annotated_right_of_way,chi-square (sparse expected counts; interpret cautiously),28.633109717789274,7.137378262098265e-05,0.2810671314452561,0.05286305171119915,0.11464282784258589,145
+conflict_response_clusters,annotated_who_went_first,chi-square (sparse expected counts; interpret cautiously),20.8212356979405,3.0111064904157353e-05,0.3626646666636798,0.0828661477679063,0.10761823702709798,144
+conflict_response_clusters,pedestrian_hand_gesture,chi-square,3.49892692053709,0.17386720509244877,0.1015542292023602,-0.02932258409731388,0.025328029351247634,145
+path_shape_clusters,driver_signal,chi-square (sparse expected counts; interpret cautiously),5.900004083966349,0.11657789935884875,0.14140440445333288,0.007899672267793206,0.022917863742301498,145
+path_shape_clusters,annotated_vehicle_speed_change,chi-square (sparse expected counts; interpret cautiously),44.91602787126858,9.562516854457437e-07,0.2901302477616237,0.022434168506120667,0.09706095132039405,145
+path_shape_clusters,annotated_pedestrian_speed_change,chi-square (sparse expected counts; interpret cautiously),14.221832193200473,0.11465014731843855,0.11005855514212316,-0.007717217836958257,0.050205766088042635,145
+path_shape_clusters,annotated_right_of_way,chi-square (sparse expected counts; interpret cautiously),76.31398802673937,8.691324263811588e-13,0.39735438524433375,0.24213306871466608,0.26514697925470376,145
+path_shape_clusters,annotated_who_went_first,chi-square (sparse expected counts; interpret cautiously),49.82391243539069,8.70967603751242e-11,0.5721094709800373,0.2243429259996741,0.20543377710450683,144
+path_shape_clusters,pedestrian_hand_gesture,chi-square (sparse expected counts; interpret cautiously),2.182728498686286,0.5353583256625651,0.0,-0.015715267402423995,0.011422492665505797,145

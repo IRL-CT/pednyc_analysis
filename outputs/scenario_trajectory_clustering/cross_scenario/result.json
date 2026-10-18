@@ -1,0 +1,22 @@
+{
+  "selected": {
+    "k": 2,
+    "silhouette": 0.9246008408321448,
+    "bootstrap_ari_mean": 0.993143844824275,
+    "bootstrap_ari_p10": 1.0,
+    "minimum_cluster_size": 2,
+    "cluster_sizes": "147;2",
+    "feature_removal_ari_min": 0.7911498680230903,
+    "accepted": false
+  },
+  "cramers_v_scenario": 0.0,
+  "raw_coordinates_excluded": true,
+  "retained_features": [
+    "ped_speed_change_mps",
+    "ped_min_interaction_speed_mps",
+    "vehicle_speed_change_mps",
+    "minimum_distance_m",
+    "ped_path_efficiency",
+    "ped_max_lateral_deviation_m"
+  ]
+}

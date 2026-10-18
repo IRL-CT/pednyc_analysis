@@ -68,6 +68,23 @@ INFERRED_ROWS = [
     ("car_context", "proceeding"),
     ("car_context", "conflicted"),
 ]
+PRESENTATION_ROWS = {
+    "Observed Motion": [
+        ("motion", "near_stationary", "Low movement", "#3B82F6"),
+        ("motion", "pausing", "Pause", "#60A5FA"),
+        ("motion", "speed_increasing", "Speeding up", "#16A34A"),
+        ("motion", "speed_decreasing", "Slowing down", "#2563EB"),
+        ("motion", "speed_steady", "Steady speed", "#14B8A6"),
+        ("motion", "fluctuating", "Variable speed", "#0F766E"),
+        ("head", "head_active", "Head movement", "#22C55E"),
+        ("head", "head_still", "Low head movement", "#6EE7B7"),
+    ],
+    "Possible Behaviors": [
+        ("motion", "hesitating", "Possible hesitation", "#F97316"),
+        ("car_context", "yielding", "Possible yielding", "#9333EA"),
+    ],
+}
+PRESENTATION_FOOTNOTE = "Possible behaviors are rule-based interpretations of measured motion and proximity."
 TAG_COLUMNS = {
     "motion": "motion_tag",
     "head": "head_tag",
@@ -90,6 +107,8 @@ TAG_COLORS = {
     "proceeding": "#81C784",
     "conflicted": "#C0A130",
 }
+PRESENTATION_LABELS = {tag: label for rows in PRESENTATION_ROWS.values() for _, tag, label, _ in rows}
+PRESENTATION_COLORS = {tag: color for rows in PRESENTATION_ROWS.values() for _, tag, _, color in rows}
 
 BACKGROUND = "#0F0F1A"
 PLOT_BACKGROUND = "#121421"
@@ -149,8 +168,12 @@ def load_inputs(segments_path, macro_path):
     if not macro_path.exists():
         raise FileNotFoundError(f"Macro-segment CSV not found: {macro_path}")
 
-    segments = pd.read_csv(segments_path)
-    macros = pd.read_csv(macro_path)
+    # index_col=False is required for the padded legacy Scenario 3 fixture and
+    # is harmless for canonical scenario-specific outputs.
+    segments = pd.read_csv(segments_path, index_col=False)
+    macros = pd.read_csv(macro_path, index_col=False)
+    segments.columns = segments.columns.astype(str).str.strip()
+    macros.columns = macros.columns.astype(str).str.strip()
     require_columns(
         segments,
         [
@@ -177,41 +200,42 @@ def load_inputs(segments_path, macro_path):
         raise ValueError(f"Invalid scenario duration: {duration}")
 
     supported = {tag for _, tag in OBSERVABLE_ROWS + INFERRED_ROWS}
-    used = set(segments["motion_tag"]) | set(segments["head_tag"]) | set(segments["car_tag"])
+    used = (
+        set(segments["motion_tag"].astype(str).str.strip())
+        | set(segments["head_tag"].astype(str).str.strip())
+        | set(segments["car_tag"].astype(str).str.strip())
+    )
     unsupported = sorted(used - supported)
     if unsupported:
         raise ValueError(f"No Gantt row configured for tags: {unsupported}")
     return segments, macros, duration
 
 
-def row_layout():
+def row_layout(segments):
     row_positions = {}
     positions = []
     labels = []
     y = 0.0
-    for dimension, tag in OBSERVABLE_ROWS:
-        row_positions[(dimension, tag)] = y
-        positions.append(y)
-        labels.append(f"{dimension}: {tag}")
-        y += 1.0
-    observable_end = positions[-1]
-    separator_y = y - 0.1
-    y += 0.8
-    inferred_start = y
-    for dimension, tag in INFERRED_ROWS:
-        row_positions[(dimension, tag)] = y
-        positions.append(y)
-        labels.append(f"{dimension}: {tag}")
-        y += 1.0
+    blocks = []
+    for section, candidates in PRESENTATION_ROWS.items():
+        rows = [row for row in candidates if row[1] in set(segments[TAG_COLUMNS[row[0]]].astype(str).str.strip())]
+        if not rows:
+            continue
+        start = y
+        for dimension, tag, label, _ in rows:
+            row_positions[(dimension, tag)] = y
+            positions.append(y)
+            labels.append(label)
+            y += 1.0
+        blocks.append((section, start, y - 1.0))
+        y += 0.65
     return {
         "lookup": row_positions,
         "positions": positions,
         "labels": labels,
-        "observable_start": positions[0],
-        "observable_end": observable_end,
-        "inferred_start": inferred_start,
-        "inferred_end": positions[-1],
-        "separator": separator_y,
+        "blocks": blocks,
+        "start": positions[0],
+        "end": positions[-1],
     }
 
 
@@ -223,20 +247,11 @@ def latest_active_row(df, current_time, start_col, end_col):
 def create_scene(segments, macros, duration, width, height, dpi):
     fig = plt.figure(figsize=(width / dpi, height / dpi), dpi=dpi, facecolor=BACKGROUND)
     ax = fig.add_axes([0.205, 0.26, 0.775, 0.665], facecolor=PLOT_BACKGROUND)
-    layout = row_layout()
+    layout = row_layout(segments)
 
-    ax.axhspan(
-        layout["observable_start"] - 0.5,
-        layout["observable_end"] + 0.5,
-        color=OBSERVABLE_BACKGROUND,
-        zorder=-4,
-    )
-    ax.axhspan(
-        layout["inferred_start"] - 0.5,
-        layout["inferred_end"] + 0.5,
-        color=INFERRED_BACKGROUND,
-        zorder=-4,
-    )
+    for section, start, end in layout["blocks"]:
+        color = OBSERVABLE_BACKGROUND if section == "Observed Motion" else INFERRED_BACKGROUND
+        ax.axhspan(start - 0.5, end + 0.5, color=color, zorder=-4)
     for i, row in macros.iterrows():
         if i % 2:
             ax.axvspan(
@@ -264,55 +279,38 @@ def create_scene(segments, macros, duration, width, height, dpi):
 
     for _, row in segments.iterrows():
         for dimension, column in TAG_COLUMNS.items():
-            tag = str(row[column])
-            y = layout["lookup"][(dimension, tag)]
+            tag = str(row[column]).strip()
+            y = layout["lookup"].get((dimension, tag))
+            if y is None:
+                continue
             ax.barh(
                 y,
                 float(row["duration_sec"]),
                 left=float(row["start_time_sec"]),
                 height=0.56,
-                color=TAG_COLORS[tag],
+                color=PRESENTATION_COLORS[tag],
                 edgecolor=BACKGROUND,
                 linewidth=0.5,
                 alpha=0.96,
                 zorder=3,
             )
 
-    ax.axhline(layout["separator"], color="#77798A", linewidth=1.2, alpha=0.9, zorder=4)
-    ax.text(
-        0.008,
-        (layout["observable_start"] + layout["observable_end"]) / 2.0,
-        "Observable Kinematics",
-        transform=ax.get_yaxis_transform(),
-        ha="left",
-        va="center",
-        fontsize=8.5,
-        fontweight="bold",
-        color=TEXT,
-        bbox={"facecolor": BACKGROUND, "edgecolor": "none", "alpha": 0.78, "pad": 2.2},
-        zorder=5,
-    )
-    ax.text(
-        0.008,
-        (layout["inferred_start"] + layout["inferred_end"]) / 2.0,
-        "Inferred Latent Behaviors",
-        transform=ax.get_yaxis_transform(),
-        ha="left",
-        va="center",
-        fontsize=8.5,
-        fontweight="bold",
-        color=TEXT,
-        bbox={"facecolor": BACKGROUND, "edgecolor": "none", "alpha": 0.78, "pad": 2.2},
-        zorder=5,
-    )
+    for index, (section, start, end) in enumerate(layout["blocks"]):
+        if index:
+            ax.axhline(start - 0.33, color="#77798A", linewidth=1.2, alpha=0.9, zorder=4)
+        ax.text(
+            0.008, (start + end) / 2.0, section, transform=ax.get_yaxis_transform(),
+            ha="left", va="center", fontsize=10, fontweight="bold", color=TEXT,
+            bbox={"facecolor": BACKGROUND, "edgecolor": "none", "alpha": 0.78, "pad": 2.2}, zorder=5,
+        )
 
     ax.set_xlim(0.0, duration)
-    ax.set_ylim(layout["observable_start"] - 0.55, layout["inferred_end"] + 0.55)
+    ax.set_ylim(layout["start"] - 0.55, layout["end"] + 0.55)
     ax.invert_yaxis()
     ax.set_yticks(layout["positions"])
-    ax.set_yticklabels(layout["labels"], color=TEXT, fontsize=7.8)
+    ax.set_yticklabels(layout["labels"], color=TEXT, fontsize=10)
     ax.set_xlabel("Scenario elapsed time, seconds", color=TEXT, fontsize=9, labelpad=8)
-    ax.set_ylabel("Behavior row", color=TEXT, fontsize=9, labelpad=8)
+    ax.set_ylabel("")
     ax.tick_params(axis="x", colors=MUTED_TEXT, labelsize=8)
     ax.tick_params(axis="y", colors=TEXT, length=0)
     ax.xaxis.grid(True, color=GRID, alpha=0.45, linewidth=0.7)
@@ -321,12 +319,13 @@ def create_scene(segments, macros, duration, width, height, dpi):
         spine.set_color("#6A6D7C")
         spine.set_linewidth(0.8)
     ax.set_title(
-        "Observable Kinematics and Inferred Latent Behaviors",
+        "Observed Motion and Possible Behaviors",
         color=TEXT,
         fontsize=12,
         fontweight="bold",
         pad=10,
     )
+    fig.text(0.5, 0.205, PRESENTATION_FOOTNOTE, ha="center", color=MUTED_TEXT, fontsize=8.5)
 
     info_ax = fig.add_axes([0.02, 0.025, 0.96, 0.15], facecolor=INFO_BACKGROUND, zorder=8)
     info_ax.set_xlim(0.0, 1.0)
@@ -402,12 +401,13 @@ def update_scene(current_time, segments, macros, duration, playhead, tooltip, in
     else:
         if macro_id is None:
             macro_id = int(segment["macro_segment_id"])
-        info = (
-            f"M{macro_id} \u00b7 segment {int(segment['micro_segment_id'])} \u2014 "
-            f"motion: {segment['motion_tag']} \u00b7 "
-            f"head: {segment['head_tag']} \u00b7 "
-            f"car: {segment['car_tag']}"
-        )
+        labels = []
+        for column in TAG_COLUMNS.values():
+            tag = str(segment[column]).strip()
+            if tag in PRESENTATION_LABELS:
+                labels.append(PRESENTATION_LABELS[tag])
+        detail = " \u00b7 ".join(labels) if labels else "No displayed presentation label"
+        info = f"M{macro_id} \u00b7 segment {int(segment['micro_segment_id'])} \u2014 {detail}"
     info_text.set_text(info)
     time_text.set_text(f"{current_time:.3f} / {duration:.3f} s")
     return playhead, tooltip, info_text, time_text

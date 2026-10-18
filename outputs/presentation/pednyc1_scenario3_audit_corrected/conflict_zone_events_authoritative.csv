@@ -1,0 +1,2 @@
+source_csv,source_sha256,pedestrian_entry_time,pedestrian_exit_time,driver_entry_time,driver_exit_time,zone_center_x_m,zone_center_z_m,zone_radius_m
+C:\Users\patl5\OneDrive\Desktop\BURE\pednyc_analysis\data\processed\pednyc1\scenario3\decoded_clean_PedNYC1_scenario3.csv,2FB6329BA8E2223D1367325CD32C1C9502EB98930224A3C877E63CE05F84E251,15.366455,18.316406,23.032715,23.845947,11.846832321674952,58.39296749693004,2.0

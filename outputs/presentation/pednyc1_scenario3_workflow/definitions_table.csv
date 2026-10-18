@@ -1,0 +1,16 @@
+﻿Display label,Actor,Input features,Exact rule or threshold,Observed versus inferred status
+Pedestrian speed,Pedestrian,B VR Pos X/Z; ScenarioTime,planar displacement/Δt; centered 9-sample mean,Observed
+Pedestrian acceleration,Pedestrian,smoothed pedestrian speed; ScenarioTime,Δspeed/Δt; centered 11-sample mean,Observed
+Head movement,Pedestrian,head-turn rate; head/body yaw difference,micro v6: mean |rate| ≥25 deg/s OR max |rate| ≥50 deg/s OR max |yaw difference| ≥20 deg,Observed
+Low head movement,Pedestrian,same,does not meet head-checking/head-active thresholds,Observed
+Left hand above shoulder,Pedestrian,left-hand Y; left-shoulder Y,hand Y > corresponding shoulder Y; raw; no minimum duration,Observed candidate
+Right hand above shoulder,Pedestrian,right-hand Y; right-shoulder Y,hand Y > corresponding shoulder Y; raw; no minimum duration,Observed candidate
+Driver nearby,Interaction,smoothed planar distance,distance < 12.0 m within microsegment/current sample,Observed
+Pedestrian inside conflict zone,Pedestrian,B VR Pos X/Z; scenario circle,"distance to (11.846832, 58.392967) m ≤ 2.0 m; first contiguous visit",Observed
+Driver inside conflict zone,Driver,A car Pos X/Z; scenario circle,"distance to (11.846832, 58.392967) m ≤ 2.0 m; first contiguous visit",Observed
+Driver speeding up,Driver,smoothed driver acceleration,acceleration ≥ +0.35 m/s²; raw condition; no duration filter,Observed
+Driver slowing down,Driver,smoothed driver acceleration,acceleration ≤ −0.25 m/s²; raw condition; no duration filter,Observed
+Driver steady speed,Driver,smoothed driver speed and acceleration,−0.25 < acceleration < +0.35 m/s² and speed ≥0.15 m/s; no duration filter,Observed
+Speed dip with recovery,Interaction,micro speed drop/recovery,>0.18 m/s and >22% drop; recovery ≥35% of drop; duration ≤1.5 s; mean speed >0.25 m/s,Inferred
+Possible yielding,Interaction,distance + pedestrian micro motion,"minimum distance <12 m AND pedestrian slowing, pausing, or speed dip with recovery",Inferred; not intent
+Driver signaling,Driver,A indicators,unavailable: field missing for every canonical sample; no encoding assigned,Missing
